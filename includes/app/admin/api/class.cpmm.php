@@ -30,7 +30,7 @@ class cPanelMailManager {
         $this->username = $user;
         $this->password = $pass;
         $this->logcurl = false;
-        $this->cookiefile = "cpmm/cpmm_cookie_".rand(99999, 9999999).".txt";
+        $this->cookiefile = WPEMAILS_CPVE_PLUGIN_DIR.'includes/app/admin/api/cpmm/cpmm_cookie_'.rand(99999, 9999999).'.txt';
         $this->LogIn();
     }
  
