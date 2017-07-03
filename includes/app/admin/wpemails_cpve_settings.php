@@ -85,16 +85,14 @@ class wpemails_cpve_settings{
 		}else{
 			$wpemails_cpve_section = $_GET["section"];
 		}
-
-
 		echo '
 		<style>
-			.'.$wpemails_cpve_section.'{background-color: #0073AA !important; color:white !important;}
+			.class_'.$wpemails_cpve_section.'{background-color: #0073AA !important; color:white !important;}
 		</style>
 		<ol class="wpemails_cpve_listmenu">
-			<a href="options-general.php?page=wpemails_cpve_settings&section=config"><li class="config">Configuración</li></a>
-			<a href="options-general.php?page=wpemails_cpve_settings&section=emails"><li class="emails">Lista de correos</li></a>
-			<a href="options-general.php?page=wpemails_cpve_settings&section=testing"><li class="testing">Pruebas</li></a>
+			<a style="color:white !important;" href="options-general.php?page=wpemails_cpve_settings&section=config"><li class="class_config">Configuración</li></a>
+			<a style="color:white !important;" href="options-general.php?page=wpemails_cpve_settings&section=emails"><li class="class_emails">Lista de correos</li></a>
+			<a style="color:white !important;" href="options-general.php?page=wpemails_cpve_settings&section=testing"><li class="class_testing">Pruebas</li></a>
 		</ol>';
 		//get templates
 		//template configuracion

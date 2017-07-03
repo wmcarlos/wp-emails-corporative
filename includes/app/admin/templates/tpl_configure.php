@@ -3,26 +3,28 @@
 	$wpemailscpve_options = self::wpemails_cpve_checkoptions();
 ?>
 
-<div class="panel panel-default">
-	<div class="panel-heading"><h2>Configuración de cuenta</h2></div>
-	<hr>
-		<div class="panel-body">
-			<form name="fsetting" id="fsetting" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
-				<input type="hidden" name="action" value="wpemails_cpve_importdata">
-				<div class="form-group">
-					<label for="txtdomain">Dominio:</label>
-					<input type="text" class="form-control" value="<?php echo $wpemailscpve_options['host'];  ?>" name="txtdomain" id="txtdomain">
-				</div>
-				<div class="form-group">
-					<label for="txtuser">Usuario:</label>
-					<input type="text" class="form-control" value="<?php echo $wpemailscpve_options['user'];  ?>" name="txtuser" id="txtuser">
-				</div>
-				<div class="form-group">
-					<label for="txtpassword">Contraseña:</label>
-					<input type="password" class="form-control" value="<?php echo $wpemailscpve_options['pass'];  ?>" name="txtpassword" id="txtpassword">
-					<input type="hidden" name="txtoperation" value="save_setting">
-				</div>
-				<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
-			</form>
-	</div>
+<div class="card-form" style="margin-left:20px;">
+  <form class="signup" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
+	<input type="hidden" name="action" value="wpemails_cpve_importdata">
+    <div class="form-title">Configuración de cuenta!</div>
+    <div class="form-body">
+      <div class="row">
+        <input type="text" name="txtdomain" placeholder="Dominio*" value="<?php echo $wpemailscpve_options['host'];  ?>">
+        <input type="text" name="txtuser" placeholder="Usuario*" value="<?php echo $wpemailscpve_options['user'];  ?>">
+      </div>
+      <div class="row">
+        <input type="password" name="txtpassword" placeholder="Password*" value="<?php echo $wpemailscpve_options['pass'];  ?>">
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="form-footer">
+    	<center>
+    		<input  class="fa fa-thumbs-o-up" type="submit" value="guardar">
+      	</center>
+    </div>
+  </form>
 </div>
+
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+</style>

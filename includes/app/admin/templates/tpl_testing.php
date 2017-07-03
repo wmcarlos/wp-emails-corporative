@@ -5,34 +5,28 @@ $wpemails_cpve_options['txtdomain'] = isset($wpemails_cpve_options['txtdomain'])
 
 ?>
 
-<div class="panel panel-default">
-	<div class="panel-heading"><h2>New Email</h2></div>
-	<div class="panel-body">
-		<form name="femail" id="femail" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
-			<input type="hidden" name="action" value="wpemails_cpve_testingdata">
-			<div class="form-group">
-				<label for="wpemails_cpve_email">Name:</label>
-				<div class="input-group">
-					<input type="text" class="form-control" name="wpemails_cpve_email">
-				     <span>
-				        <strong>@<?php echo $wpemails_cpve_options['txtdomain']; ?></strong>
-			    	</span>			
-			    </div>
-			</div>
-			<div class="form-group">
-				<label for="password">Password:</label>
-				<br>
-				<input type="password" name="wpemails_cpve_password" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="quota">Quota:</label>
-				<br>
-				<input type="text" name="wpemails_cpve_quota" class="form-control">
-				<input type="hidden" name="txtoperation" value="add">
-			</div>
-			<br>
-			<button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
-			<a href="all.php" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a>
-		</form>
-	</div>
+<div class="card-form" style="margin-left:20px;">
+  <form class="signup" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
+	<input type="hidden" name="action" value="wpemails_cpve_testingdata">
+    <div class="form-title">Probando Registro de Correo</div>
+    <div class="form-body">
+      <div class="row">
+        <input type="text" name="wpemails_cpve_email" placeholder="Usuario*" value="">@<?php echo $wpemails_cpve_options['txtdomain']; ?><
+        <input type="password" name="wpemails_cpve_password" placeholder="Contraseña*" value="">
+      </div>
+      <div class="row">
+        <input type="text" name="wpemails_cpve_quota" placeholder="Quota*" value="">
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="form-footer">
+    	<center>
+    		<input  class="fa fa-thumbs-o-up" type="submit" value="guardar">
+      	</center>
+    </div>
+  </form>
 </div>
+
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+</style>

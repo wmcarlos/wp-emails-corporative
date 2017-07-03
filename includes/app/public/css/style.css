@@ -6,19 +6,21 @@ ol.wpemails_cpve_listmenu{
 ol.wpemails_cpve_listmenu li{
 	display: inline-block;
 	padding: 10px 15px;
-	background-color: #F9F9F9;
 	text-decoration: none;
-	color:black;
 	font-size: 20px;
+	font-weight: bold;
+	background: #27ae60;
+	border-radius: 10px 10px 0 0;
+}
+ol.wpemails_cpve_listmenu li a{
+	text-decoration: none;
+	color: white !important;
 }
 ol.wpemails_cpve_listmenu li:hover{
 	background-color: #0073AA;
 	color: white;
 }
-.active{
-	background-color: #0073AA !important;
-	color: white !important;
-}
+
 
 /*creando estilo para la tabla lista de emails*/
 table.wpemails_cpve_table_settings{
@@ -28,4 +30,87 @@ table.wpemails_cpve_table_settings{
 table.wpemails_cpve_table_settings tr td{
 	padding: 10px;
 	border:1px solid #ccc;
+}
+
+
+/*-------------------estilos para el formulario de configure y test---------------*/
+
+.card-form {
+  width: 500px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+   color: white;
+  letter-spacing: 1px;
+   font-family: Raleway;
+}
+.card-form .form-title {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 80px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #27ae60;
+  border-radius: 10px 10px 0 0;
+}
+.card-form .form-body {
+  padding: 10px;
+}
+.card-form .form-body .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 10px;
+}
+.card-form .form-body .row input[type="text"] ,.card-form .form-body .row input[type="password"] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  margin: 0 15px;
+  height: 35px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background: #e8ebed;
+  color: #576366;
+  font-size: 14px;
+}
+.card-form .rule {
+  height: 2px;
+  background: #e8ebed;
+  margin: 0px 35px;
+}
+.card-form .form-footer {
+  margin: 0 25px 15px 25px;
+  padding: 15px 10px;
+}
+.card-form .form-footer input[type='submit']{
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+  background: #27ae60;
+  margin-right: 10px;
+  font-size: 18px;
+  color:white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.card-form .form-footer input[type='submit']:hover{
+	background-color: #229452;
+}
+.card-form .form-footer span {
+  margin-left: 8px;
 }
