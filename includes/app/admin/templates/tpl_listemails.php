@@ -23,10 +23,13 @@
 
 	echo '<table class="wpemails_cpve_table_settings" cellpading="0" cellspacing="0">';
 	echo '
+	<thead>
 	<tr>
 		<th>Correo</th>
 		<th>Quota</th>
-	</tr>';
+	</tr>
+	</thead>
+	<tbody>';
 		for($i=0; $i < count($data); $i++){
 			$e_separe = explode("@", $data[$i]['email']);
 			$cad.="<tr>";
@@ -35,8 +38,10 @@
 			$cad.="</tr>";
 		}
 	print $cad;
-	echo '</table>';
-
+	echo '
+	</tbody>
+	</table>';
+	
 
 	
 

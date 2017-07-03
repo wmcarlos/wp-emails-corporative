@@ -21,7 +21,7 @@ $wpemails_cpve_options['txtdomain'] = isset($wpemails_cpve_options['txtdomain'])
     <div class="rule"></div>
     <div class="form-footer">
     	<center>
-    		<input  class="fa fa-thumbs-o-up" type="submit" value="guardar">
+    		<input  class="fa fa-thumbs-o-up" type="submit" value="Registrar Correo">
       	</center>
     </div>
   </form>
