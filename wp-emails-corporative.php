@@ -44,14 +44,14 @@ class WPEMAILS_CPVE {
 		
 	}
 	private function includes() {
+		//API REST CPANEL
+		require_once WPEMAILS_CPVE_PLUGIN_DIR.'includes/app/admin/api/class.cpmm.php';
 		//Settings
 		require_once WPEMAILS_CPVE_PLUGIN_DIR.'includes/app/admin/wpemails_cpve_settings.php';
 		do_action('wpemails_cpve_include_files');
-		
 	}
 	
 	private function setupGlobals() {
-
 		// Plugin Folder Path
 		if (!defined('WPEMAILS_CPVE_PLUGIN_DIR')) {
 			define('WPEMAILS_CPVE_PLUGIN_DIR', plugin_dir_path( __FILE__ ));

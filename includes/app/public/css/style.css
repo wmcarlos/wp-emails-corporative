@@ -1,0 +1,21 @@
+/*CSS QUE COLOCAREMOS NOSOTROS*/
+/*ESTILO PARA LA LISTA DE OPCIONES*/
+ol.wpemails_cpve_listmenu{
+	list-style: none;
+}
+ol.wpemails_cpve_listmenu li{
+	display: inline-block;
+	padding: 10px 15px;
+	background-color: #F9F9F9;
+	text-decoration: none;
+	color:black;
+	font-size: 20px;
+}
+ol.wpemails_cpve_listmenu li:hover{
+	background-color: #0073AA;
+	color: white;
+}
+.active{
+	background-color: #0073AA !important;
+	color: white !important;
+}
