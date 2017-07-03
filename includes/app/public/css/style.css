@@ -107,7 +107,7 @@ table.wpemails_cpve_table_settings tr td{
   border: none;
   border-radius: 5px;
   padding: 5px 15px;
-  background: #27ae60;
+  background: #B4B4B4;
   margin-right: 10px;
   font-size: 18px;
   color:white;
@@ -115,7 +115,7 @@ table.wpemails_cpve_table_settings tr td{
   font-weight: bold;
 }
 .card-form .form-footer input[type='submit']:hover{
-	background-color: #229452;
+	background-color: #9A9A9A;
 }
 .card-form .form-footer span {
   margin-left: 8px;
