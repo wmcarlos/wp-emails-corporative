@@ -19,3 +19,13 @@ ol.wpemails_cpve_listmenu li:hover{
 	background-color: #0073AA !important;
 	color: white !important;
 }
+
+/*creando estilo para la tabla lista de emails*/
+table.wpemails_cpve_table_settings{
+	padding: 10px;
+	border:1px solid #ccc;
+}
+table.wpemails_cpve_table_settings tr td{
+	padding: 10px;
+	border:1px solid #ccc;
+}
