@@ -24,6 +24,7 @@ class wpemails_cpve_settings{
 		$wpemails['host'] = isset($wpemails_cpve_options['txtdomain']) ? $wpemails_cpve_options['txtdomain'] : '';
 		$wpemails['user'] = isset($wpemails_cpve_options['txtuser']) ? $wpemails_cpve_options['txtuser'] : '';
 		$wpemails['pass']  = isset($wpemails_cpve_options['txtpassword']) ? $wpemails_cpve_options['txtpassword'] : '';
+		$wpemails['txtacrocorporative']  = isset($wpemails_cpve_options['txtacrocorporative']) ? $wpemails_cpve_options['txtacrocorporative'] : '';
 		return $wpemails;
 	}
 
@@ -56,6 +57,7 @@ class wpemails_cpve_settings{
 		$wpemails_cpve_options['txtdomain'] = $_POST['txtdomain'];
 		$wpemails_cpve_options['txtuser'] = $_POST['txtuser'];
 		$wpemails_cpve_options['txtpassword'] = $_POST['txtpassword'];
+		$wpemails_cpve_options['txtacrocorporative'] = $_POST['txtacrocorporative'];
 		//guardamos los datos
 		update_option('wpemails_cpve_options',$wpemails_cpve_options);
 		//derireccionamos a la pagina nuevamente

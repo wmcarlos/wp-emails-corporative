@@ -13,6 +13,9 @@
         <input type="text" name="txtuser" placeholder="Usuario*" value="<?php echo $wpemailscpve_options['user'];  ?>">
       </div>
       <div class="row">
+        <input type="text" name="txtacrocorporative" placeholder="Valor del correo corporativo ej. @tucompañia.com" value="<?php echo $wpemailscpve_options['txtacrocorporative'];  ?>">
+      </div>
+      <div class="row">
         <input type="password" name="txtpassword" placeholder="Password*" value="<?php echo $wpemailscpve_options['pass'];  ?>">
       </div>
     </div>

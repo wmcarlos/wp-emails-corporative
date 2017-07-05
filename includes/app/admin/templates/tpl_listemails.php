@@ -26,7 +26,8 @@
 	<thead>
 	<tr>
 		<th>Correo</th>
-		<th>Quota</th>
+		<th>Cuota</th>
+		<th>Accion</th>
 	</tr>
 	</thead>
 	<tbody>';
@@ -35,6 +36,8 @@
 			$cad.="<tr>";
 			$cad.="<td>".$data[$i]['email']."</td>";
 			$cad.="<td>".$data[$i]['diskquota']."</td>";
+			$cad.="<td><a href='edit.php?email=".$e_separe[0]."' class='btn btn-info'><i class='fa fa-pencil'></i> Change Password</a>
+						<a href='#' class='btn btn-danger delete_email' data-email='".$e_separe[0]."'><i class='fa fa-times'></i> Delete</a></td>";
 			$cad.="</tr>";
 		}
 	print $cad;

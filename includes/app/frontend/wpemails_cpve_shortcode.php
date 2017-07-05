@@ -23,9 +23,13 @@
 		$post = wp_insert_post($new_post,true);
 		$options['wpemails_cpve_fullnamee'] = $_POST['wpemails_cpve_fullname'];
 		$options['wpemails_cpve_direction'] = $_POST['wpemails_cpve_direction'];
-		$options['wpemails_cpve_email_corporative'] = $_POST['wpemails_cpve_email_corporative'];
+		$options['wpemails_cpve_email_corporative'] = $_POST['wpemails_cpve_email_corporative'].$_POST['txtacrocorporative'];
 		$options['wpemails_cpve_email_password'] = $_POST['wpemails_cpve_password'];
 		$options['wpemails_cpve_email_send'] = $_POST['wpemails_cpve_email'];
+		$options['wpemails_cpve_fechanamiciento'] = $_POST['wpemails_cpve_fechanamiciento'];
+		$options['wpemails_cpve_pais'] = $_POST['wpemails_cpve_pais'];
+		$options['wpemails_cpve_plan'] = strip_tags($_POST['wpemails_cpve_plan']);
+		$options['wpemails_cpve_num_confirmacion'] = $_POST['wpemails_cpve_num_confirmacion'];
 
 		//Personal Information
 		update_post_meta($post,'wpemails_cpve_cpt_options',$options);
