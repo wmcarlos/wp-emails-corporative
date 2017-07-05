@@ -11,38 +11,38 @@
     <div class="form-body">
       <strong style="color:#707070; margin-left:28px;">Tu Correo:</strong>
       <div class="row">
-        <input type="text" name="wpemails_cpve_email" id="wpemails_cpve_email" placeholder="Tu Email" value="">
+        <input type="text" class="validate" name="wpemails_cpve_email" id="wpemails_cpve_email" placeholder="Tu Email" value="">
       </div>
 
       <strong style="color:#707070; margin-left:28px;">Nombre Completo:</strong>
       <div class="row">
-        <input type="text" name="wpemails_cpve_fullname" id="wpemails_cpve_fullname" placeholder="Nombres Completos" value="">
+        <input type="text" class="validate" name="wpemails_cpve_fullname" id="wpemails_cpve_fullname" placeholder="Nombres Completos" value="">
       </div>
 
       <strong style="color:#707070; margin-left:28px;">Fecha Nacimiento:</strong>
       <div class="row">
-        <input type="text" name="wpemails_cpve_fechanamiciento" id="wpemails_cpve_fechanamiciento" placeholder="00/00/0000" value="">
+        <input type="text" class="validate" name="wpemails_cpve_fechanamiciento" id="wpemails_cpve_fechanamiciento" placeholder="00/00/0000" value="">
       </div>
 
 
       <strong style="color:#707070; margin-left:28px;">Pais:</strong>
       <div class="row">
-          <input type="text" placeholder=""  name="wpemails_cpve_pais"  id="wpemails_cpve_pais">
+          <input type="text" class="validate" placeholder=""  name="wpemails_cpve_pais"  id="wpemails_cpve_pais">
       </div>
 
       <strong style="color:#707070; margin-left:28px;">Ciudad:</strong>
       <div class="row">
-          <textarea placeholder="Direccion"  name="wpemails_cpve_direction"  id="wpemails_cpve_direction" style="height:100px;"></textarea>
+          <textarea placeholder="Direccion"  class="validate" name="wpemails_cpve_direction"  id="wpemails_cpve_direction" style="height:100px;"></textarea>
       </div>
       <strong style="color:#707070; margin-left:28px;">Correo Corporativo:</strong>
       <div class="row">
-        <input type="text" name="wpemails_cpve_email_corporative" id="wpemails_cpve_email_corporative" placeholder="Ingresa la cuenta de correo corporativo" value="">
+        <input type="text" class="validate" name="wpemails_cpve_email_corporative" id="wpemails_cpve_email_corporative" placeholder="Ingresa la cuenta de correo corporativo" value="">
         <input type="text" readonly="readonly" name="txtacrocorporative" id="txtacrocorporative" value="<?php echo $wpemails_cpve_dataoptions['txtacrocorporative']; ?>">
       </div>
 
       <strong style="color:#707070; margin-left:28px;">Contraseña:</strong>
       <div class="row">
-        <input type="password" name="wpemails_cpve_password" id="wpemails_cpve_password" placeholder="Contraseña*" value="">
+        <input type="password" name="wpemails_cpve_password" class="validate" id="wpemails_cpve_password" placeholder="Contraseña*" value="">
       </div>
       <div class="row">
           <p style="color:#707070 !important; display:block; font-size:10px !important; margin-left:-250px;">
@@ -71,7 +71,7 @@
       ?>
       <strong style="color:#707070; margin-left:28px;">Seleccione Plan:</strong>
       <div class="row">
-        <select name="wpemails_cpve_plan" id="wpemails_cpve_plan">
+        <select name="wpemails_cpve_plan" id="wpemails_cpve_plan" class="validate">
           <option value="">Seleccionar plan</option>
         <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <option value="<?php echo the_content(); ?>"><?php echo the_title()." - ".get_the_content();?></option>
@@ -116,7 +116,98 @@
   var wpemails_pattern_fecha =  /^([0][1-9]|[12][0-9]|3[01])(\/|-)([0][1-9]|[1][0-2])\2(\d{4})$/
 
 
+
+
   jQuery(document).ready(function($){
+
+
+    //validacion por teclado
+      $('.validate').keyup(function(){  
+        validate($(this));
+      });
+       $('.validate').change(function(){  
+        validate($(this));
+      });
+
+
+      function validate(data){
+          wpemails_data = data.attr("id");
+          wpemails_value = data.val();
+
+          if(wpemails_data=='wpemails_cpve_num_confirmacion'){
+            if(!wpemails_pattern_vacio.test(wpemails_value)){
+               $("#wpemails_cpve_num_confirmacion").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_num_confirmacion").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+
+          if(wpemails_data=='wpemails_cpve_pais'){
+            if(!wpemails_pattern_vacio.test(wpemails_value)){
+               $("#wpemails_cpve_pais").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_pais").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+
+
+          if(wpemails_data=='wpemails_cpve_plan'){
+            if(!wpemails_pattern_vacio.test(wpemails_value)){
+               $("#wpemails_cpve_plan").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_plan").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+
+          if(wpemails_data=='wpemails_cpve_fechanamiciento'){
+            if(!wpemails_pattern_fecha.test(wpemails_value)){
+               $("#wpemails_cpve_fechanamiciento").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_fechanamiciento").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+
+          if(wpemails_data=='wpemails_cpve_fullname'){
+            if(!wpemails_pattern.test(wpemails_value)){
+               $("#wpemails_cpve_fullname").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_fullname").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+
+          if(wpemails_data=='wpemails_cpve_email'){
+            if(!wpemails_pattern_email.test(wpemails_value)){
+               $("#wpemails_cpve_email").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_email").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+
+          if(wpemails_data=='wpemails_cpve_email_corporative'){
+            if(!wpemails_pattern_letters.test(wpemails_value)){
+               $("#wpemails_cpve_email_corporative").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_email_corporative").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+
+          if(wpemails_data=='wpemails_cpve_password'){
+
+            if(!wpmails_pattern_password.test(wpemails_value)){
+               $("#wpemails_cpve_password").addClass('wpem_user_screen_input_failed');
+            }else{
+               $("#wpemails_cpve_password").removeClass('wpem_user_screen_input_failed');
+            }
+          }
+        }
+
+  
+
+
+
+
+
+
       $("#wpemails_register").on('click',function(){
         wpemails_cpve_email = $("#wpemails_cpve_email").val();
         wpemails_cpve_password =  $("#wpemails_cpve_password").val();
