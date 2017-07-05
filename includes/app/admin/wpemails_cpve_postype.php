@@ -9,15 +9,15 @@ class wpemails_cpve_postype{
 	public static function wpemails_cpve_postype_fn(){
 	
 		$labels = array(
-			'name' => 'Correos Corporativos',
-			'singular_name' => 'Correos Corporativos',
-			'add_new' => 'Agregar Nuevo Correos Corporativo',
-			'all_items'=> 'Listar Correos Corporativos',
-			'add_new_item'=> 'Agregar Nuevo Correos Corporativo',
-			'edit_item' => 'Editar Correos Corporativo',
-			'view_item ' => 'Visualizar Correos Corporativo',
-			'search_item' => 'Buscar Correos Corporativo',
-			'not_found' => 'No Existe el Correos Corporativo',
+			'name' => 'Solicitud de Correo Corporativo',
+			'singular_name' => 'Solicitud de Correos Corporativos',
+			'add_new' => 'Nuevo Solicitud de Correos Corporativo',
+			'all_items'=> 'Listar Solicitudes de Correos Corporativos',
+			'add_new_item'=> 'Agregar Nueva Solicitud de Correo Corporativo',
+			'edit_item' => 'Editar Solicitud',
+			'view_item ' => 'Visualizar Solicitud',
+			'search_item' => 'Buscar Solicitud',
+			'not_found' => 'No Existe el Solicitudes de Correos Corporativo',
 			'not_found_in_trash ' => 'No Enlace found in trash',
 			'parent_item_colon' => 'Parent Item'
 		);

@@ -21,7 +21,7 @@
 
       <strong style="color:#707070; margin-left:28px;">Fecha Nacimiento:</strong>
       <div class="row">
-        <input type="date" name="wpemails_cpve_fechanamiciento" id="wpemails_cpve_fechanamiciento" placeholder="Fecha de nacimiento" value="">
+        <input type="text" name="wpemails_cpve_fechanamiciento" id="wpemails_cpve_fechanamiciento" placeholder="00/00/0000" value="">
       </div>
 
 
@@ -112,6 +112,8 @@
   var wpemails_pattern = /^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$/
   var wpemails_pattern_letters  = /^[a-zA-Z-0-9]+$/
   var wpmails_pattern_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+  var wpemails_pattern_vacio =  /^[^]+$/
+  var wpemails_pattern_fecha =  /^([0][1-9]|[12][0-9]|3[01])(\/|-)([0][1-9]|[1][0-2])\2(\d{4})$/
 
 
   jQuery(document).ready(function($){
@@ -121,9 +123,41 @@
         wpemails_cpve_fullname = $("#wpemails_cpve_fullname").val();
         wpemails_cpve_direction =  $("#wpemails_cpve_direction").val();
         wpemails_cpve_email_corporative=  $("#wpemails_cpve_email_corporative").val();
+        wpemails_cpve_fechanamiciento = $("#wpemails_cpve_fechanamiciento").val();
+        wpemails_cpve_pais = $("#wpemails_cpve_pais").val();
+        wpemails_cpve_plan = $("#wpemails_cpve_plan").val();
+        wpemails_cpve_num_confirmacion = $("#wpemails_cpve_num_confirmacion").val();
         wpemails_nosubmit = 0;
 
         //valitate required fields
+        if(!wpemails_pattern_vacio.test(wpemails_cpve_num_confirmacion)){
+           $("#wpemails_cpve_num_confirmacion").addClass('wpem_user_screen_input_failed');
+              wpemails_nosubmit=1;
+        }else{
+           $("#wpemails_cpve_num_confirmacion").removeClass('wpem_user_screen_input_failed');
+        }
+
+        if(!wpemails_pattern_vacio.test(wpemails_cpve_pais)){
+           $("#wpemails_cpve_pais").addClass('wpem_user_screen_input_failed');
+              wpemails_nosubmit=1;
+        }else{
+           $("#wpemails_cpve_pais").removeClass('wpem_user_screen_input_failed');
+        }
+
+        if(!wpemails_pattern_vacio.test(wpemails_cpve_plan)){
+           $("#wpemails_cpve_plan").addClass('wpem_user_screen_input_failed');
+              wpemails_nosubmit=1;
+        }else{
+           $("#wpemails_cpve_plan").removeClass('wpem_user_screen_input_failed');
+        }
+
+         if(!wpemails_pattern_fecha.test(wpemails_cpve_fechanamiciento)){
+           $("#wpemails_cpve_fechanamiciento").addClass('wpem_user_screen_input_failed');
+              wpemails_nosubmit=1;
+        }else{
+           $("#wpemails_cpve_fechanamiciento").removeClass('wpem_user_screen_input_failed');
+        }
+
         if(!wpemails_pattern.test(wpemails_cpve_fullname)){
            $("#wpemails_cpve_fullname").addClass('wpem_user_screen_input_failed');
               wpemails_nosubmit=1;
