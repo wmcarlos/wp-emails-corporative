@@ -8,7 +8,10 @@ class wpemails_cpve_settings{
 	{
 		//creamos el menu en el panel de configuracion
 		add_action('admin_menu',  array(__CLASS__, 'wpemails_cpve_options_submenu_settings'));
+		//se ejecuta en el admin
 		add_action( 'admin_enqueue_scripts', array(__CLASS__, 'wpemails_cpve_admin_enqueue_scripts'), 999 );
+		//se ejecuta en el front
+		add_action( 'wp_enqueue_scripts',  array(__CLASS__, 'wpemails_cpve_admin_enqueue_scripts'), 999 );
 		//guardar la configuracion de cuenta
 		add_action( 'admin_post_wpemails_cpve_importdata', array(__CLASS__,'wpemails_cpve_importdata_callback'));	
 		//guardar el testing de correo es decir probar registrando correo desde el admin
@@ -37,9 +40,9 @@ class wpemails_cpve_settings{
 	public static function wpemails_cpve_options_submenu_settings()
 	{
 		add_submenu_page(
-			'options-general.php',          // el slug en donde mostraremos el submenu
-			__( 'Settings WP Emails Corporative Hosting', 'wp_emails_corporative' ), // titulo de la pagina
-		    __( 'Settings WP Emails Corporative Hosting', 'wp_emails_corporative' ), //  titulo del menu
+			'edit.php?post_type=wpemails_cpve_cpt',          // el slug en donde mostraremos el submenu
+			__( 'Configuracion  del Cpanel', 'wp_emails_corporative' ), // titulo de la pagina
+		    __( 'Configuracion  del Cpanel', 'wp_emails_corporative' ), //  titulo del menu
 				'manage_options',               // capacidad requerida para ver esta pagina 
 				'wpemails_cpve_settings',                //  nombre de la pagina o su slug, e.g. options-general.php?page=wpemails_cpve_settings
 				  array(__CLASS__,'wpemails_cpve_settings_fn')           // funcion callback en donde  colocaremos o que va dentro de la pagina
@@ -56,7 +59,7 @@ class wpemails_cpve_settings{
 		//guardamos los datos
 		update_option('wpemails_cpve_options',$wpemails_cpve_options);
 		//derireccionamos a la pagina nuevamente
-		wp_redirect(admin_url('options-general.php?page=wpemails_cpve_settings'));
+		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings'));
 		
 	}
 
@@ -71,7 +74,7 @@ class wpemails_cpve_settings{
 			}else{
 				$wpemails_cpve_estatus = 'error';
 		}
-		wp_redirect(admin_url('options-general.php?page=wpemails_cpve_settings&section=testing&estatus='.$wpemails_cpve_estatus));
+		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=testing&estatus='.$wpemails_cpve_estatus));
 	}
 
 
@@ -90,9 +93,9 @@ class wpemails_cpve_settings{
 			.class_'.$wpemails_cpve_section.'{background-color: #0073AA !important; color:white !important;}
 		</style>
 		<ol class="wpemails_cpve_listmenu">
-			<a style="color:white !important;" href="options-general.php?page=wpemails_cpve_settings&section=config"><li class="class_config">Configuración</li></a>
-			<a style="color:white !important;" href="options-general.php?page=wpemails_cpve_settings&section=emails"><li class="class_emails">Lista de correos</li></a>
-			<a style="color:white !important;" href="options-general.php?page=wpemails_cpve_settings&section=testing"><li class="class_testing">Pruebas</li></a>
+			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=config"><li class="class_config">Configuración</li></a>
+			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails"><li class="class_emails">Lista de correos</li></a>
+			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=testing"><li class="class_testing">Pruebas</li></a>
 		</ol>';
 		//get templates
 		//template configuracion

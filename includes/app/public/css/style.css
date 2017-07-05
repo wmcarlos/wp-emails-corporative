@@ -78,7 +78,7 @@ table.wpemails_cpve_table_settings tr td{
       justify-content: space-around;
   padding: 10px;
 }
-.card-form .form-body .row input[type="text"] ,.card-form .form-body .row input[type="password"] {
+.card-form .form-body .row input[type="text"] ,.card-form .form-body .row input[type="password"],.card-form .form-body .row textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
