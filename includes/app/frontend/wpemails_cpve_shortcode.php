@@ -30,7 +30,7 @@
 		$options['wpemails_cpve_pais'] = $_POST['wpemails_cpve_pais'];
 		$options['wpemails_cpve_plan'] = strip_tags($_POST['wpemails_cpve_plan']);
 		$options['wpemails_cpve_num_confirmacion'] = $_POST['wpemails_cpve_num_confirmacion'];
-
+		$options['wpemails_cpve_phone'] = $_POST['wpemails_cpve_phone'];		
 		//Personal Information
 		update_post_meta($post,'wpemails_cpve_cpt_options',$options);
 		echo "Registro Exitoso";

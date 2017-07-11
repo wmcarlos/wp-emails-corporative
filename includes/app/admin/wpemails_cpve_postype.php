@@ -149,6 +149,10 @@ class wpemails_cpve_postype{
 			<td><strong>Num. Confirmacion Paypal</strong></td>
 			<td><input type="text" name="wpemails_cpve_num_confirmacion" value="<?php echo $wpemails_cpve_data[0]['wpemails_cpve_num_confirmacion'];  ?>"></td>
 		</tr>
+		<tr>
+			<td><strong>Num. Telefono</strong></td>
+			<td><input type="text" name="wpemails_cpve_phone" value="<?php echo $wpemails_cpve_data[0]['wpemails_cpve_phone'];  ?>"></td>
+		</tr>
 
 
 		<tr>

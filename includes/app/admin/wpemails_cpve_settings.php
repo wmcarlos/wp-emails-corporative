@@ -33,6 +33,9 @@ class wpemails_cpve_settings{
 	public static function wpemails_cpve_admin_enqueue_scripts(){
 		//estilos
 		wp_enqueue_style( 'wpemails_cpve_style',plugin_dir_url( __FILE__ ).'../public/css/style.css');
+		wp_enqueue_script( 'wpemails_cpve_utils',plugin_dir_url(__FILE__ ).'../frontend/validateTel/js/utils.js', array( 'jquery') );
+		
+
 	}
 
 
