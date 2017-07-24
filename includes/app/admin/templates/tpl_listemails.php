@@ -9,9 +9,22 @@
 	$host_ex[3] = (isset($host_ex[3]) and !empty($host_ex[3])) ? ".".$host_ex[3] : "";
 	$last_part_email ="@".$host_ex[1].".".$host_ex[2].$host_ex[3];
 
+		//borraremos el email desde aqui
+	if($_GET['delete']){
+		if($cpmm->deleteEmail($_GET['delete'])){		
+			'<h2>Email Eliminado Con Exito</h2>
+			<a href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails">Volver</a>
+			';
+
+		}else{
+			'<h2>No se pudo Eliminar el email</h2>';
+		}
+			
+	}else{
 
 	$data = $cpmm->listEmails();
 
+	//print_r($data);
 	function compare_domain($e, $e2){
 		$part_email = explode("@", $e);
 		if("@".$part_email[1] == $e2){
@@ -36,8 +49,8 @@
 			$cad.="<tr>";
 			$cad.="<td>".$data[$i]['email']."</td>";
 			$cad.="<td>".$data[$i]['diskquota']."</td>";
-			$cad.="<td><a href='edit.php?email=".$e_separe[0]."' class='btn btn-info'><i class='fa fa-pencil'></i> Change Password</a>
-						<a href='#' class='btn btn-danger delete_email' data-email='".$e_separe[0]."'><i class='fa fa-times'></i> Delete</a></td>";
+			$cad.="<td>
+						<a href='edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails&delete=".$data[$i]['email']."' class='btn btn-danger delete_email' data-email='".$e_separe[0]."'><i class='fa fa-times'></i> Delete</a></td>";
 			$cad.="</tr>";
 		}
 	print $cad;
@@ -46,5 +59,5 @@
 	</table>';
 	
 
-	
+}//cierre del else delete email
 

@@ -136,7 +136,7 @@ class cPanelMailManager {
      * @param bstring $sortby Column to sort by, ie. "email", "_diskused", "mtime", or "domain"
      * @return array
     */
-    public function listEmails($pageSize = 10, $currentPage = 1, $paginate = true, $sort = true, $sortby = "user"){
+    public function listEmails($pageSize = 100, $currentPage = 1, $paginate = true, $sort = true, $sortby = "user"){
         $params = 'user='.$this->username.'&pass='.$this->password;;
         $url = "https://".$this->cpanelHost.":".$this->cpanelPort.$this->cpsess."/json-api/cpanel".
         "?cpanel_jsonapi_version=2".

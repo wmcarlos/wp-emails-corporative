@@ -16,7 +16,11 @@ class wpemails_cpve_settings{
 		add_action( 'admin_post_wpemails_cpve_importdata', array(__CLASS__,'wpemails_cpve_importdata_callback'));	
 		//guardar el testing de correo es decir probar registrando correo desde el admin
 		add_action( 'admin_post_wpemails_cpve_testingdata', array(__CLASS__,'wpemails_cpve_testingdata_callback'));	
-		
+		//guardar la configuracion del newsletter
+		add_action( 'admin_post_wpemails_cpve_newsletter', array(__CLASS__,'wpemails_cpve_newsletter_callback'));	
+		//guardar los terminos de condiciones
+		add_action( 'admin_post_wpemails_cpve_terminos', array(__CLASS__,'wpemails_cpve_terminos_callback'));	
+
 	}
 
 	function wpemails_cpve_checkoptions(){
@@ -52,7 +56,26 @@ class wpemails_cpve_settings{
 				  array(__CLASS__,'wpemails_cpve_settings_fn')           // funcion callback en donde  colocaremos o que va dentro de la pagina
 			);
 	}
-	
+
+
+	/*Recibir los datos de terminos y condiciones*/
+	public static function wpemails_cpve_terminos_callback(){
+		$wpemailscpve_options['wpemails_cpve_terminos'] = $_POST['wpemails_cpve_terminos'];
+		update_option('wpemails_cpve_terminos',$wpemailscpve_options);
+		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=terminos'));
+
+	}
+
+	/**************************************************/
+	//Recibir lo datos de configuracion del newsletter via post
+	public static function wpemails_cpve_newsletter_callback(){
+		$wpemailscpve_options['wpemails_cpve_hostnamerelay'] = $_POST['wpemails_cpve_hostnamerelay'];
+		$wpemailscpve_options['wpemails_cpve_apikeyrelay'] = $_POST['wpemails_cpve_apikeyrelay'];
+		$wpemailscpve_options['wpemails_cpve_group'] = $_POST['wpemails_cpve_group'];
+		update_option('wpemails_cpve_newsletter',$wpemailscpve_options);
+		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=newsletter'));
+
+	}
 
 	/*************************************************/
 	//recibir los datos de configuracion via post
@@ -101,6 +124,8 @@ class wpemails_cpve_settings{
 			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=config"><li class="class_config">Configuración</li></a>
 			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails"><li class="class_emails">Lista de correos</li></a>
 			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=testing"><li class="class_testing">Pruebas</li></a>
+			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=newsletter"><li class="class_newsletter">Newsletter</li></a>
+			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=terminos"><li class="class_terminos">Terminos y Condiciones</li></a>
 		</ol>';
 		//get templates
 		//template configuracion
@@ -115,6 +140,14 @@ class wpemails_cpve_settings{
 		//probar el registro de correos
 		if(isset($_GET['section']) && $_GET['section']=='testing'){
 			include_once('templates/tpl_testing.php');
+		}
+		//registrar newsletter
+		if(isset($_GET['section']) && $_GET['section']=='newsletter'){
+			include_once('templates/tpl_newsletter.php');
+		}
+		//Terminos y condiciones
+		if(isset($_GET['section']) && $_GET['section']=='terminos'){
+			include_once('templates/tpl_terminos.php');
 		}
 
 	}
