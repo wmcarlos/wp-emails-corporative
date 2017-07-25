@@ -14,6 +14,20 @@
 
 
 <div class="card-form">
+<!-- Modal Term-->
+<div id="dialog" style="display: none;" title="Terminos y Condiciones">
+    <?php 
+      $wpemails_cpve_terminos = get_option('wpemails_cpve_terminos');
+     ?>
+     <p>
+    <?php echo $wpemails_cpve_terminos['wpemails_cpve_terminos']; ?>
+    </p>
+
+</div>
+
+<!-- Facebook login or logout button -->
+<a href="javascript:void(0);" onclick="fbLogin()" id="fbLink"><img src="https://drmqjozm1bc8u.cloudfront.net/images/responsive/fb_login_button.png"/></a>
+
   <form class="signup" method="post" action="">
    <!-- <div class="form-title">Registrar Correo Electronico</div>-->
     <div class="form-body">
@@ -141,7 +155,7 @@
      
       <!--terminos y condiciones,ofertas de subscripcion-->
       <div class="row">
-          <input style="width:50px;" type="checkbox"  name="wpmails_cpve_terminos" id="wpmails_cpve_terminos" value="Y"><span style="position:relative; width:400px;"><b>!Acepto los <a href="#" class="poput_terms">Terminos y Condiciones!</a></b></span>
+          <input style="width:50px;" type="checkbox"  name="wpmails_cpve_terminos" id="wpmails_cpve_terminos" value="Y"><span style="position:relative; width:400px;"><b>!Acepto los <span style="text-decoration: underline; cursor: pointer;" class="poput_terms">Terminos y Condiciones!</span></b></span>
       </div>
 
       <!--Recibir Ofertas de subscripcion-->
@@ -217,11 +231,47 @@
         return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
       } 
 
+          $( "#dialog" ).dialog({
+            autoOpen: false,
+            modal : true,
+            my : 'center',
+            at : 'center',
+            of : window,
+            buttons: {
+              Ok: function() {
+                $( this ).dialog( "close" );
+              }
+            },
+            width : 500,
+            height : 500,
+            scrollable : true,
+            show: {
+              effect: "blind",
+              duration: 1000
+            },
+            hide: {
+              effect: "explode",
+              duration: 1000
+            }
+          });
+       
+          $( ".poput_terms" ).on( "click", function() {
+            $( "#dialog" ).dialog( "open" );
+          });
 
-      $(".poput_terms").click(function(){
+
+      /*$(".poput_terms").click(function(){
             popup = popupwindow('<?php print(admin_url("admin-post.php")); ?>?action=wpemails_terminos', 'Terminos y Condiciones','500','500');
+            jQuery( "#dialog-message" ).dialog({
+                modal: true,
+                buttons: {
+                  Ok: function() {
+                    $( this ).dialog( "close" );
+                  }
+                }
+              });
 
-      });
+      });*/
 
       //validacion por teclado
       $('.validate').keyup(function(){  
@@ -614,4 +664,54 @@
         }
 
 });  
+
+window.fbAsyncInit = function() {
+    // FB JavaScript SDK configuration and setup
+    FB.init({
+      appId      : '341820379543254', // FB App ID
+      cookie     : true,  // enable cookies to allow the server to access the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.8' // use graph api version 2.8
+    });
+};
+
+// Load the JavaScript SDK asynchronously
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+// Facebook login with JavaScript SDK
+function fbLogin() {
+    FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            getFbUserData();
+        } else {
+            alert('User cancelled login or did not fully authorize.');
+        }
+    }, {scope: 'email,user_birthday,user_location'});
+}
+
+// Fetch the user profile data from facebook
+function getFbUserData(){
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,birthday,location'},
+    function (response) {
+
+        document.getElementById("wpemails_cpve_email").value = response.email;
+        document.getElementById("wpemails_cpve_fullname").value = response.first_name+" "+response.last_name;
+
+        var birthday = response.birthday.split("/");
+        document.getElementById("days").value = birthday[1];
+        document.getElementById("months").value = birthday[0];
+        document.getElementById("years").value = birthday[2];
+
+        document.getElementById("wpemails_cpve_direction").value = response.location.name;
+        
+    });
+}
+
 </script>

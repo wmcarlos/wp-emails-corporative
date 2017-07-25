@@ -36,8 +36,11 @@ class wpemails_cpve_settings{
 	/*Css y javascript que usaremos en el panel admin*/
 	public static function wpemails_cpve_admin_enqueue_scripts(){
 		//estilos
+		wp_enqueue_style('jquery-ui','//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 		wp_enqueue_style( 'wpemails_cpve_style',plugin_dir_url( __FILE__ ).'../public/css/style.css');
 		wp_enqueue_script( 'wpemails_cpve_utils',plugin_dir_url(__FILE__ ).'../frontend/validateTel/js/utils.js', array( 'jquery') );
+		wp_enqueue_script("jquery-ui-core");
+		wp_enqueue_script("jquery-ui","https://code.jquery.com/ui/1.12.1/jquery-ui.js",array("jquery"));
 		
 
 	}
