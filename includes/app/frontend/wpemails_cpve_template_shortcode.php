@@ -24,6 +24,12 @@
     </p>
 
 </div>
+<!--Modal Oferts-->
+<div id="dialog-oferts" style="display: none;" title="Ofertas de Empleo">
+     <p>
+        
+    </p>
+</div>
 
 <!-- Facebook login or logout button -->
 <a href="javascript:void(0);" onclick="fbLogin()" id="fbLink"><img src="https://drmqjozm1bc8u.cloudfront.net/images/responsive/fb_login_button.png"/></a>
@@ -160,7 +166,7 @@
 
       <!--Recibir Ofertas de subscripcion-->
       <div class="row">
-          <input style="width:50px;" type="checkbox" name="wpmails_cpve_ofertas" id="wpmails_cpve_ofertas" value="Y"><span style="position:relative; width:400px;"><b>!Recibir Ofertas de Empleo!</b></span>
+          <input style="width:50px;" type="checkbox" name="wpmails_cpve_ofertas" id="wpmails_cpve_ofertas" value="Y"><span style="position:relative; width:400px;"><b>!Recibir Ofertas de Empleo <span style="text-decoration: underline; cursor: pointer;" class="poput_oferts">SOBRE!</span></b></span> 
       </div>
 
       <!--recibir mejoras-->
@@ -256,22 +262,38 @@
           });
        
           $( ".poput_terms" ).on( "click", function() {
-            $( "#dialog" ).dialog( "open" );
+              $( "#dialog" ).dialog( "open" );
           });
 
+          /*Dialog Oferts*/
+          $( "#dialog-oferts" ).dialog({
+            autoOpen: false,
+            modal : true,
+            my : 'center',
+            at : 'center',
+            of : window,
+            buttons: {
+              Ok: function() {
+                $( this ).dialog( "close" );
+              }
+            },
+            width : 500,
+            height : 500,
+            scrollable : true,
+            show: {
+              effect: "blind",
+              duration: 1000
+            },
+            hide: {
+              effect: "explode",
+              duration: 1000
+            }
+          });
 
-      /*$(".poput_terms").click(function(){
-            popup = popupwindow('<?php print(admin_url("admin-post.php")); ?>?action=wpemails_terminos', 'Terminos y Condiciones','500','500');
-            jQuery( "#dialog-message" ).dialog({
-                modal: true,
-                buttons: {
-                  Ok: function() {
-                    $( this ).dialog( "close" );
-                  }
-                }
-              });
+          $( ".poput_oferts" ).on( "click", function() {
+              $( "#dialog-oferts" ).dialog( "open" );
+          });
 
-      });*/
 
       //validacion por teclado
       $('.validate').keyup(function(){  
