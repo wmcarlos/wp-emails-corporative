@@ -2,11 +2,6 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box; }
 
-body {
-  margin: 20px;
-  font-size: 14px;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  color: #555; }
 
 .hide {
   display: none; }

@@ -81,9 +81,9 @@
 
       <strong style="color:#707070;" class="title-strong">Contraseña:</strong><span class=" wpemails_helps" titlehelp="Genere su clave. Para mayor seguridad debe contener letras alfanuméricas y caracteres.">(?)</span>
       <div class="row">
-        <input type="password" style="height:45px !important;" name="wpemails_cpve_password" class="validate" id="wpemails_cpve_password" placeholder="Contraseña*" value="">
+        <input autocomplete="off" type="password" style="height:45px !important;" name="wpemails_cpve_password" class="validate" id="wpemails_cpve_password" placeholder="Contraseña*" value="">
       </div>
-      <div class="row" style="padding:0px !important;width:100%;max-width:200px;">
+      <div class="row wpemails_help_password" style="display:none; padding:0px !important;width:100%;max-width:200px;">
           <p style="color:#707070 !important; display:block; font-size:12px !important; margin-left:15px;">
           Minimo 12 caracteres
           <br>
@@ -279,6 +279,11 @@
       });
        $('.validate').change(function(){  
         validate($(this));
+      });
+
+      //abrir ventana de ayuda password
+      $("#wpemails_cpve_password").focus(function(event) {
+        $('.wpemails_help_password').slideDown(600);
       });
 
        //ajax keyup email
@@ -701,17 +706,20 @@ function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,birthday,location'},
     function (response) {
         jQuery("#fbLink").hide();
-      
+
         document.getElementById("wpemails_cpve_email").value = response.email;
         document.getElementById("wpemails_cpve_fullname").value = response.first_name+" "+response.last_name;
 
-        var birthday = response.birthday.split("/");
-        document.getElementById("days").value = birthday[1];
-        document.getElementById("months").value = birthday[0];
-        document.getElementById("years").value = birthday[2];
-
-        document.getElementById("wpemails_cpve_direction").value = response.location.name;
-
+        if(response.birthday){
+          var birthday = response.birthday.split("/");
+          document.getElementById("days").value = birthday[1];
+          document.getElementById("months").value = birthday[0];
+          document.getElementById("years").value = birthday[2];
+        }
+        
+        if(response.location.name){
+          document.getElementById("wpemails_cpve_direction").value = response.location.name;
+        }
         
     });
 }
