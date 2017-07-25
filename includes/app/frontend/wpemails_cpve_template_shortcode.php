@@ -710,6 +710,8 @@ function getFbUserData(){
         document.getElementById("years").value = birthday[2];
 
         document.getElementById("wpemails_cpve_direction").value = response.location.name;
+
+        jQuery("#fbLink").hide();
         
     });
 }
