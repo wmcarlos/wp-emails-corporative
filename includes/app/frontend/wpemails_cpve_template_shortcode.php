@@ -700,7 +700,8 @@ function fbLogin() {
 function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,birthday,location'},
     function (response) {
-
+        jQuery("#fbLink").hide();
+      
         document.getElementById("wpemails_cpve_email").value = response.email;
         document.getElementById("wpemails_cpve_fullname").value = response.first_name+" "+response.last_name;
 
@@ -711,7 +712,6 @@ function getFbUserData(){
 
         document.getElementById("wpemails_cpve_direction").value = response.location.name;
 
-        jQuery("#fbLink").hide();
         
     });
 }
