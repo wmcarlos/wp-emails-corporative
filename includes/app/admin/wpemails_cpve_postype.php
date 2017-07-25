@@ -197,6 +197,17 @@ class wpemails_cpve_postype{
 					<p>Sus datos Registrados Fueron: <br> <strong>Email:</strong>'.$_POST['wpemails_cpve_email_corporative'].' <br> <strong>Contraseña: </strong>'.$_POST['wpemails_cpve_email_password'].'</p>
 					<p><strong>Cuota :</strong>'.$_POST['wpemails_cpve_plan'];
 					$headers = array('Content-Type: text/html; charset=UTF-8');
+					//Changes
+					add_filter('wp_mail_from', 'new_mail_from');
+					add_filter('wp_mail_from_name', 'new_mail_from_name');
+					 
+					function new_mail_from($old) {
+					 return 'noreply@estudiantesdelabiblia.com.ve';
+					}
+					function new_mail_from_name($old) {
+					 return 'Estudiantes de la Biblia';
+					}			
+					//End Changes
 					wp_mail($to, $subject, $body, $headers);
 					//============enviando correo=============
 					//Condicion para la subscripcion
