@@ -15,14 +15,9 @@ function wpemails_curl_mailrelay($postData,$curl){
 
 
 $data_options = get_option('wpemails_cpve_newsletter');
-
 $host = isset($data_options['wpemails_cpve_hostnamerelay']) ? $data_options['wpemails_cpve_hostnamerelay'] : '';
-
 $apikey = isset($data_options['wpemails_cpve_apikeyrelay']) ? $data_options['wpemails_cpve_apikeyrelay'] : '';
-
 $group_list = isset($data_options['wpemails_cpve_group']) ? $data_options['wpemails_cpve_group'] : '';
-
-
 $curl = curl_init('https://'.$host.'/ccm/admin/api/version/2/&type=json');
 
 /*Obtener la lista de subscriptores*/

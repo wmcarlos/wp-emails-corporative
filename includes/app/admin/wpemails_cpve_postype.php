@@ -313,7 +313,10 @@ class wpemails_cpve_postype{
 			<td><strong>Recibir Ofertas de empleo:</strong></td>
 			<td><input type="text" name="wpmails_cpve_ofertas" readonly="readonly" value="<?php echo $wpemails_cpve_data[0]['wpmails_cpve_ofertas']; ?>"></td>
 		</tr>
-
+		<tr>
+			<td><strong>Ofertas de empleo <?php print_r($wpemails_cpve_data[0]['wpemails_group_empleo']); ?></strong></td>
+			<td><input type="text" name="wpemails_group_empleo" value="<?php echo $wpemails_cpve_data[0]['wpemails_group_empleo']; ?>"></td>
+		</tr>
 		<tr>
 			<td><strong>Recibir Mejoras de:</strong></td>
 			<td><input type="text" name="wpmails_cpve_mejoras" readonly="readonly" value="<?php echo $wpemails_cpve_data[0]['wpmails_cpve_mejoras']; ?>"></td>
