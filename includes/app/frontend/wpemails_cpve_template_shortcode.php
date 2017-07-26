@@ -34,57 +34,7 @@
     <!--Modal Oferts-->
 <div id="dialog-oferts" style="display: none;" title="Ofertas de Empleo">
      <p>
-        <?php 
-            /*function wpemails_curl_mailrelay_front($postData,$curl){
-              curl_setopt($curl, CURLOPT_POST, true);
-              curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($postData));
-              curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-              $json = curl_exec($curl);
-              if ($json === false) {
-                  die('Request failed with error: '. curl_error($curl));
-              }
-              $result = json_decode($json);
-              return $result;
-          }
-
-
-            $data_options = get_option('wpemails_cpve_newsletter');
-            $host = isset($data_options['wpemails_cpve_hostnamerelay']) ? $data_options['wpemails_cpve_hostnamerelay'] : '';
-            $apikey = isset($data_options['wpemails_cpve_apikeyrelay']) ? $data_options['wpemails_cpve_apikeyrelay'] : '';
-            $group_list = isset($data_options['wpemails_cpve_group']) ? $data_options['wpemails_cpve_group'] : '';
-            $curl = curl_init('https://'.$host.'/ccm/admin/api/version/2/&type=json');
-
-            /*Obtener los grupos*/
-            /*$getGroups = array(
-                'function' => 'getGroups',
-                'apiKey' => $apikey,
-                'offset' => 0,
-                'count' => 2,
-            );
-
-            if(!empty($host) && !empty($apikey)){
-              //echo "existe";
-              $wpmails_groups = wpemails_curl_mailrelay_front($getGroups,$curl);
-            }*/
-        ?>
-         <?php // if($wpmails_groups->status != 0) {?>
-
-        <div class="row">
-          <table >
-            <?php// foreach ($wpmails_groups->data as $group) { ?>
-              <tr>
-                <td>
-                  <strong style="font-size:30px;"><?php echo $group->name; ?></strong>
-                </td>
-                <td>
-                  <input type="checkbox" name="wpemails_group_empleo[]" value="<?php echo $group->id; ?>"> 
-                </td>
-              </tr>
-            <?php //} ?>
-          </table>
-        </div>
-
-        <?php //} ?>
+       
     </p>
 
 
@@ -120,8 +70,8 @@
       <div class="row">
         <input id="phone" type="tel" name="wpemails_cpve_phone" style="height:45px !important;">
         <br>
-        <span id="valid-msg" class="hide">✓ Valido</span>
-        <span id="error-msg" class="hide">Numero Invalido</span>
+        <span id="valid-msg" class="hide">✓</span>
+        <span id="error-msg" class="hide">X</span>
       </div>
 
       <strong style="color:#707070;" class="title-strong">Ciudad:</strong><span class=" wpemails_helps" titlehelp="Ingrese la Ciudad de su residencia.">(?)</span>
@@ -140,25 +90,27 @@
         </select>
       </div>
 
+       <div class="row wpemails_help_password" style="display:none; padding:0px !important; padding-top:20px !important;width:100%;max-width:200px;">
+          <br>
+          <br>
+          <p style="color:#707070 !important; display:block; font-size:12px !important; margin-left:15px;">
+          <span class="12-minimo">Minimo 12 caracteres</span>
+          <br>
+          <span class="1-minuscula">Al menos una letra minucula</span>
+          <br>
+          <span class="1-digito">Al menos un dígito</span>
+          <br>
+          <span class="1-espacio">No espacios en blanco</span>
+          <br>
+          <span class="1-caracterespecial">Al menos 1 caracter especial</span>
+        </p>
+      </div>
+
       <strong style="color:#707070;" class="title-strong">Contraseña:</strong><span class=" wpemails_helps" titlehelp="Genere su clave. Para mayor seguridad debe contener letras alfanuméricas y caracteres.">(?)</span>
       <div class="row">
         <input autocomplete="off" type="password" style="height:45px !important;" name="wpemails_cpve_password" class="validate" id="wpemails_cpve_password" placeholder="Contraseña*" value="">
       </div>
-      <div class="row wpemails_help_password" style="display:none; padding:0px !important;width:100%;max-width:200px;">
-          <p style="color:#707070 !important; display:block; font-size:12px !important; margin-left:15px;">
-          Minimo 12 caracteres
-          <br>
-          Maximo 18 caracteres
-          <br>
-          Al menos una letra minucula
-          <br>
-          Al menos un dígito
-          <br>
-          <strong style="color:red;">No espacios en blanco</strong>
-          <br>
-          Al menos 1 caracter especial
-        </p>
-      </div>
+    
       <!--crear planes-->
       <?php
           $args = array(
@@ -265,6 +217,17 @@
     margin-top: 45px !important;
     z-index: 999999;
   }
+  .wpemails_help_password{
+    position: absolute;
+    background-color: black;
+    color: white;
+    margin-top: -230px;
+    margin-left: 170px;
+  }
+  .wpemails_help_password span{
+    font-size: 12px !important;
+    display: block;
+  }
   </style>
   <?php 
     $nonce = wp_create_nonce('wpemails_register_ajax');
@@ -345,14 +308,57 @@
             }
           });
 
-          $( ".poput_oferts" ).on( "click", function() {
+      $( ".poput_oferts" ).on( "click", function() {
               $( "#dialog-oferts" ).dialog( "open" );
-          });
+      });
 
 
       //validacion por teclado
       $('.validate').keyup(function(){  
-        validate($(this));
+          validate($(this));
+
+          //validar campos de contraseña
+          if($(this).attr('id')=='wpemails_cpve_password'){
+              //saber si tiene minimo 12 caracteres
+              if($(this).val().length>=12){
+                $(".12-minimo").css({'color':'#04A003 !important'});
+               
+              }else{
+                $(".12-minimo").css({'color':'#FF0000 !important'});
+
+              } 
+              //si posee al menos una minuscula
+              patron = /[a-z]/g
+              if(patron.test($(this).val())){
+                $(".1-minuscula").css({'color':'#04A003 !important'});
+              }else{
+                $(".1-minuscula").css({'color':'#FF0000 !important'});
+              }
+              //si posee un digito
+              patron = /[0-9]/g
+              if(patron.test($(this).val())){
+                $(".1-digito").css({'color':'#04A003 !important'});
+              }else{
+                $(".1-digito").css({'color':'#FF0000 !important'});
+              }
+              //si posee al menus un caracter especial
+              patron = /[$@$!%*?&\-]/
+              if(patron.test($(this).val())){
+                $(".1-caracterespecial").css({'color':'#04A003 !important'});
+              }else{
+                $(".1-caracterespecial").css({'color':'#FF0000 !important'});
+              }
+              //si posee un espacio en blanco
+              patron = /\s/
+               if(patron.test($(this).val())){
+                $(".1-espacio").css({'color':'#FF0000 !important'});                
+              }else{
+                $(".1-espacio").css({'color':'#04A003 !important'});
+
+              }
+
+          }//cierre del if
+
       });
        $('.validate').change(function(){  
         validate($(this));
@@ -360,7 +366,11 @@
 
       //abrir ventana de ayuda password
       $("#wpemails_cpve_password").focus(function(event) {
-        $('.wpemails_help_password').slideDown(600);
+        $('.wpemails_help_password').show(400);
+      });
+      $("#wpemails_cpve_password").blur(function(){
+        $('.wpemails_help_password').hide(0);
+
       });
 
        //ajax keyup email
