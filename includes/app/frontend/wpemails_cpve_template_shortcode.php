@@ -321,7 +321,7 @@
           if($(this).attr('id')=='wpemails_cpve_password'){
               //saber si tiene minimo 12 caracteres
               if($(this).val().length>=12){
-                $(".12-minimo").css({'color':'#04A003 !important'});
+                $(".12-minimo").css({'color':'#37D937 !important'});
                
               }else{
                 $(".12-minimo").css({'color':'#FF0000 !important'});
@@ -330,21 +330,21 @@
               //si posee al menos una minuscula
               patron = /[a-z]/g
               if(patron.test($(this).val())){
-                $(".1-minuscula").css({'color':'#04A003 !important'});
+                $(".1-minuscula").css({'color':'#37D937 !important'});
               }else{
                 $(".1-minuscula").css({'color':'#FF0000 !important'});
               }
               //si posee un digito
               patron = /[0-9]/g
               if(patron.test($(this).val())){
-                $(".1-digito").css({'color':'#04A003 !important'});
+                $(".1-digito").css({'color':'#37D937 !important'});
               }else{
                 $(".1-digito").css({'color':'#FF0000 !important'});
               }
               //si posee al menus un caracter especial
               patron = /[$@$!%*?&\-]/
               if(patron.test($(this).val())){
-                $(".1-caracterespecial").css({'color':'#04A003 !important'});
+                $(".1-caracterespecial").css({'color':'#37D937 !important'});
               }else{
                 $(".1-caracterespecial").css({'color':'#FF0000 !important'});
               }
@@ -353,7 +353,7 @@
                if(patron.test($(this).val())){
                 $(".1-espacio").css({'color':'#FF0000 !important'});                
               }else{
-                $(".1-espacio").css({'color':'#04A003 !important'});
+                $(".1-espacio").css({'color':'#37D937 !important'});
 
               }
 
