@@ -219,17 +219,17 @@
      
       <!--terminos y condiciones,ofertas de subscripcion-->
       <div class="row">
-          <input style="width:50px;" type="checkbox"  name="wpmails_cpve_terminos" id="wpmails_cpve_terminos" value="Y"><span style="position:relative; width:400px;"><b>!Acepto los <span style="text-decoration: underline; cursor: pointer;" class="poput_terms">Terminos y Condiciones!</span></b></span>
+          <input style="width:50px;" type="checkbox"  name="wpmails_cpve_terminos" id="wpmails_cpve_terminos" value="Y"><span style="position:relative; width:400px;"><b><span style="text-decoration: underline; cursor: pointer;" class="poput_terms">Términos y Condiciones</span></b></span>
       </div>
 
       <!--Recibir Ofertas de subscripcion-->
       <div class="row">
-          <input style="width:50px;" type="checkbox" name="wpmails_cpve_ofertas" id="wpmails_cpve_ofertas" value="Y"><span style="position:relative; width:400px;"><b>!Recibir Ofertas de Empleo <span style="text-decoration: underline; cursor: pointer;" class="poput_oferts">SOBRE!</span></b></span> 
+          <input style="width:50px;" type="checkbox" name="wpmails_cpve_ofertas" id="wpmails_cpve_ofertas" value="Y"><span style="position:relative; width:400px;"><b><span style="text-decoration: underline; cursor: pointer;" class="poput_oferts">Recibir las mejores ofertas de trabajo</span></b></span> 
       </div>
 
       <!--recibir mejoras-->
       <div class="row">
-          <input style="width:50px;" type="checkbox" name="wpmails_cpve_mejoras" id="wpmails_cpve_mejoras" value="Y"><span style="position:relative; width:400px;"><b>!Recibir Mejoras!</b></span>
+          <input style="width:50px;" type="checkbox" name="wpmails_cpve_mejoras" id="wpmails_cpve_mejoras" value="Y"><span style="position:relative; width:400px;"><b>Recibir los mejores descuentos y promociones</b></span>
       </div>
 
 
