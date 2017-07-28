@@ -233,7 +233,6 @@
       </div>
 
 
-
     </div><!--cierre de la clase completa de filas-->
     <p>
       <center><strong id="wpemails_cpve_alert" style="color:#707070; display:none;">Enviando....</strong></center>
