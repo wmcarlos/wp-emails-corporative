@@ -141,19 +141,19 @@
         </select>
       </div>
 
-       <div class="row wpemails_help_password" style="display:none; padding:0px !important; padding-top:20px !important;width:100%;max-width:200px;">
+       <div class="row wpemails_help_password" style="display:none; padding:0px !important; padding-top:20px !important;width:100%;max-width:270px;">
           <br>
           <br>
-          <p style="color:#707070 !important; display:block; font-size:12px !important; margin-left:15px;">
-          <span class="12-minimo">Minimo 12 caracteres</span>
+          <p style="color:#707070 !important; display:block; font-size:12px !important;">
+          <span class="12-minimo" style="padding-left: 20px;">Minimo 12 caracteres</span>
           <br>
-          <span class="1-minuscula">Al menos una letra minucula</span>
+          <span class="1-minuscula" style="padding-left: 20px;">Al menos una letra minucula</span>
           <br>
-          <span class="1-digito">Al menos un dígito</span>
+          <span class="1-digito" style="padding-left: 20px;">Al menos un dígito</span>
           <br>
-          <span class="1-espacio">No espacios en blanco</span>
+          <span class="1-espacio" style="padding-left: 20px;">No espacios en blanco</span>
           <br>
-          <span class="1-caracterespecial">Al menos 1 caracter especial</span>
+          <span class="1-caracterespecial" style="padding-left: 20px;">Al menos 1 caracter especial</span>
         </p>
       </div>
 
@@ -363,6 +363,13 @@
               $( "#dialog-oferts" ).dialog( "open" );
       });
 
+      //Load default style from images
+     $(".12-minimo, .1-minuscula, .1-digito, .1-caracterespecial, .1-espacio").css({
+        'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+        'background-repeat' : 'no-repeat',
+        'background-position-y' : '-25px'
+     });
+
 
       //validacion por teclado
       $('.validate').keyup(function(){  
@@ -372,39 +379,104 @@
           if($(this).attr('id')=='wpemails_cpve_password'){
               //saber si tiene minimo 12 caracteres
               if($(this).val().length>=12){
-                $(".12-minimo").css({'color':'#37D937 !important'});
-               
+
+                 $(".12-minimo").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '0px',
+                    'color':'#37D937 !important'
+                 });
+
               }else{
-                $(".12-minimo").css({'color':'#FF0000 !important'});
+
+                $(".12-minimo").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '-25px',
+                    'color':'#FF0000 !important'
+                 });
 
               } 
               //si posee al menos una minuscula
               patron = /[a-z]/g
               if(patron.test($(this).val())){
-                $(".1-minuscula").css({'color':'#37D937 !important'});
+
+                $(".1-minuscula").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '0px',
+                    'color':'#37D937 !important'
+                 });
+
               }else{
-                $(".1-minuscula").css({'color':'#FF0000 !important'});
+
+                $(".1-minuscula").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '-25px',
+                    'color':'#FF0000 !important'
+                 });
+
               }
               //si posee un digito
               patron = /[0-9]/g
               if(patron.test($(this).val())){
-                $(".1-digito").css({'color':'#37D937 !important'});
+
+                $(".1-digito").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '0px',
+                    'color':'#37D937 !important'
+                 });
+
               }else{
-                $(".1-digito").css({'color':'#FF0000 !important'});
+                $(".1-digito").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '-25px',
+                    'color':'#FF0000 !important'
+                 });
               }
               //si posee al menus un caracter especial
               patron = /[$@$!%*?&\-]/
               if(patron.test($(this).val())){
-                $(".1-caracterespecial").css({'color':'#37D937 !important'});
+
+                $(".1-caracterespecial").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '0px',
+                    'color':'#37D937 !important'
+                 });
+
               }else{
-                $(".1-caracterespecial").css({'color':'#FF0000 !important'});
+
+                $(".1-caracterespecial").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '-25px',
+                    'color':'#FF0000 !important'
+                 });
+
               }
               //si posee un espacio en blanco
               patron = /\s/
-               if(patron.test($(this).val())){
-                $(".1-espacio").css({'color':'#FF0000 !important'});                
+               if(patron.test($(this).val())){        
+
+                 $(".1-espacio").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '-25px',
+                    'color':'#FF0000 !important'
+                 });   
+
               }else{
-                $(".1-espacio").css({'color':'#37D937 !important'});
+
+                $(".1-espacio").css({
+                    'background-image' : 'url("<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/img/sprite_tips.png")',
+                    'background-repeat' : 'no-repeat',
+                    'background-position-y' : '0px',
+                    'color':'#37D937 !important'
+                 });  
 
               }
 
