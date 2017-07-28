@@ -238,6 +238,7 @@ class wpemails_cpve_postype{
 		curl_setopt($curl, CURLOPT_POST, true);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$json = curl_exec($curl);
 	}//cieerre de la subscripcion del newsletter
 
