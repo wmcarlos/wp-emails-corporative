@@ -3,16 +3,6 @@
 
 ?>
 
-<script type="text/javascript">
-           var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-           var ajaxurl2 = "<?php echo admin_url('admin-ajax.php'); ?>";
-</script> 
-<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/prism.css">
-<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/intlTelInput.css">
-<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/demo.css">
-<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/isValidNumber.css">
-
-
 <div class="card-form">
 <!-- Modal Term-->
 <div id="dialog" style="display: none;" title="Terminos y Condiciones">
@@ -24,7 +14,6 @@
     </p>
 
 </div>
-
 
 <!-- Facebook login or logout button -->
 <a href="javascript:void(0);" onclick="fbLogin()" id="fbLink"><img src="https://drmqjozm1bc8u.cloudfront.net/images/responsive/fb_login_button.png"/></a>
@@ -105,13 +94,13 @@
 
       <strong style="color:#707070;" class="title-strong">Fecha Nacimiento:</strong><span class=" wpemails_helps" titlehelp="Selecione el día, mes y año de su nacimiento.">(?)</span>
       <div class="row" id="wpemails_cpve_fechanamiciento_general">
-        <select id="days" style="height:45px !important;">
+        <select id="days" class="select_validate" style="height:45px !important;">
           <option value="">Dia</option>
         </select>
-        <select id="months" style="height:45px !important;">
+        <select id="months" class="select_validate" style="height:45px !important;">
           <option value="">Mes</option> 
         </select>
-        <select id="years" style="height:45px !important;">
+        <select id="years" class="select_validate" style="height:45px !important;">
           <option value="">Año</option>
         </select>
        <input type="hidden" class="validate" name="wpemails_cpve_fechanamiciento" id="wpemails_cpve_fechanamiciento" placeholder="00/00/0000" value="">
@@ -247,12 +236,17 @@
 </div>
 
 
+
+
+<!--###################################ESTILOS Y LIBRERIAS JAVASCRIPT########################-->
+<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/prism.css">
+<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/intlTelInput.css">
+<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/demo.css">
+<link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/isValidNumber.css">
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/js/prism.js"></script>
 <script src="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/js/intlTelInput.js"></script>
 <script src="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/js/isValidNumber.js"></script>
-
-
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
 /*-------------------estilos para el formulario de configure y test---------------*/
@@ -282,7 +276,15 @@
   <?php 
     $nonce = wp_create_nonce('wpemails_register_ajax');
   ?>
+
+
+
+
+<!--- ##############################FUNCIONES JAVASCRIPT##############################-->
 <script type="text/javascript">
+  var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+  var ajaxurl2 = "<?php echo admin_url('admin-ajax.php'); ?>";
+  
   var wpemails_pattern_email = /^[a-z]+[a-z-0-9_]+@[a-z]+\.[a-z]{2,4}/
   var wpemails_pattern = /^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$/
   var wpemails_pattern_letters  = /^[a-zA-Z-0-9]+$/
@@ -482,8 +484,8 @@
           }//cierre del if
 
       });
-       $('.validate').change(function(){  
-        validate($(this));
+       $('.validate,.select_validate').change(function(){  
+           validate($(this));
       });
 
       //abrir ventana de ayuda password
@@ -629,7 +631,6 @@
         }else{
            $("#wpemails_cpve_num_confirmacion").removeClass('wpem_user_screen_input_failed');
         }
-
         if(!wpemails_pattern_vacio.test(wpemails_cpve_pais)){
            $("#wpemails_cpve_pais").addClass('wpem_user_screen_input_failed');
               wpemails_nosubmit+=1;
@@ -662,15 +663,21 @@
         if(!wpemails_pattern.test(wpemails_cpve_fullname)){
            $("#wpemails_cpve_fullname").addClass('wpem_user_screen_input_failed');
               wpemails_nosubmit+=1;
+              $('span.wpemails_cpve_fullname').remove();
               //nobligatorio
           if(($('#wpemails_cpve_fullname').val().length<=0) &&  $('#wpemails_cpve_fullname').attr("estatus_required")=='nobligatorio'){
-               $("#wpemails_cpve_fullname").removeClass('wpem_user_screen_input_failed');
-              wpemails_nosubmit-=1;
+              $("#wpemails_cpve_fullname").removeClass('wpem_user_screen_input_failed');
+               wpemails_nosubmit-=1;
+              $('span.wpemails_cpve_fullname').remove();
           }
-
         }else{
-           $("#wpemails_cpve_fullname").removeClass('wpem_user_screen_input_failed');
+            $("#wpemails_cpve_fullname").removeClass('wpem_user_screen_input_failed');
+            $('span.wpemails_cpve_fullname').remove();
+            $("#wpemails_cpve_fullname").after('<span class="'+$("#wpemails_cpve_fullname").attr('id')+'">✓</span>');
+
         }
+
+
         if(!wpemails_pattern_email.test(wpemails_cpve_email)){
            $("#wpemails_cpve_email").addClass('wpem_user_screen_input_failed');
               wpemails_nosubmit+=1;
@@ -825,42 +832,60 @@
           if(wpemails_data=='wpemails_cpve_plan'){
             if(!wpemails_pattern_vacio.test(wpemails_value)){
                $("#wpemails_cpve_plan").addClass('wpem_user_screen_input_failed');
+               $('span.wpemails_cpve_plan').remove();
+
             }else{
                $("#wpemails_cpve_plan").removeClass('wpem_user_screen_input_failed');
+               $('span.wpemails_cpve_plan').remove();
+               $("#wpemails_cpve_plan").after('<span class="'+$("#wpemails_cpve_plan").attr('id')+'">✓</span>');
             }
           }
 
-          if(wpemails_data=='wpemails_cpve_fechanamiciento'){
-            if(!wpemails_pattern_fecha.test(wpemails_value)){
+          if(data.parent().attr("id") == 'wpemails_cpve_fechanamiciento_general'){
+            wpemails_cpve_fechanamiciento = $("#days").val()+"/"+$("#months").val()+"/"+$("#years").val();
+            $('span.wpemails_cpve_fechanamiciento_general').remove();
+            if(!wpemails_pattern_fecha.test(wpemails_cpve_fechanamiciento)){
                $("#wpemails_cpve_fechanamiciento").addClass('wpem_user_screen_input_failed');
                $("#wpemails_cpve_fechanamiciento_general").addClass('wpem_user_screen_input_failed');
             }else{
+              
                $("#wpemails_cpve_fechanamiciento").removeClass('wpem_user_screen_input_failed');
-               $("#wpemails_cpve_fechanamiciento_general").addClass('wpem_user_screen_input_failed');
+               $("#wpemails_cpve_fechanamiciento_general").removeClass('wpem_user_screen_input_failed');
+               $("#wpemails_cpve_fechanamiciento_general").append('<span class="'+$("#wpemails_cpve_fechanamiciento_general").attr('id')+'">✓</span>');
+                
             }
           }
 
           if(wpemails_data=='wpemails_cpve_fullname'){
             if(!wpemails_pattern.test(wpemails_value)){
+               $('span.wpemails_cpve_fullname').remove();
                $("#wpemails_cpve_fullname").addClass('wpem_user_screen_input_failed');
             }else{
                $("#wpemails_cpve_fullname").removeClass('wpem_user_screen_input_failed');
+               $('span.wpemails_cpve_fullname').remove();
+               $("#wpemails_cpve_fullname").after('<span class="'+$("#wpemails_cpve_fullname").attr('id')+'">✓</span>');
             }
           }
 
           if(wpemails_data=='wpemails_cpve_email'){
             if(!wpemails_pattern_email.test(wpemails_value)){
                $("#wpemails_cpve_email").addClass('wpem_user_screen_input_failed');
+               $('span.wpemails_cpve_email').remove();
             }else{
                $("#wpemails_cpve_email").removeClass('wpem_user_screen_input_failed');
+               $('span.wpemails_cpve_email').remove();
+               $("#wpemails_cpve_email").after('<span class="'+$("#wpemails_cpve_email").attr('id')+'">✓</span>');
             }
           }
 
           if(wpemails_data=='wpemails_cpve_email_corporative'){
             if(!wpemails_pattern_letters.test(wpemails_value)){
                $("#wpemails_cpve_email_corporative").addClass('wpem_user_screen_input_failed');
+               $("span.txtacrocorporative").remove();
             }else{
                $("#wpemails_cpve_email_corporative").removeClass('wpem_user_screen_input_failed');
+               $("span.txtacrocorporative").remove();
+               $("#txtacrocorporative").after('<span class="'+$("#txtacrocorporative").attr('id')+'">✓</span>');
             }
           }
 
@@ -868,8 +893,14 @@
 
             if(!wpmails_pattern_password.test(wpemails_value)){
                $("#wpemails_cpve_password").addClass('wpem_user_screen_input_failed');
+               $("span.wpemails_cpve_password").remove();
+
             }else{
                $("#wpemails_cpve_password").removeClass('wpem_user_screen_input_failed');
+               $("span.wpemails_cpve_password").remove();
+               $("#wpemails_cpve_password").after('<span class="'+$("#wpemails_cpve_password").attr('id')+'">✓</span>');
+
+                
             }
           }
           
