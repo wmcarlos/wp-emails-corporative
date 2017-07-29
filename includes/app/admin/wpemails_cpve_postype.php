@@ -212,7 +212,10 @@ class wpemails_cpve_postype{
 					//============enviando correo=============
 					//Condicion para la subscripcion
 					if($_POST['wpmails_cpve_ofertas']!=''){
-						self::wpemails_subscription_newsletter($_POST['wpemails_cpve_fullname'],$_POST['wpemails_cpve_email_corporative']);
+
+						$groups = $_POST['wpemails_group_empleo'];
+
+						self::wpemails_subscription_newsletter($_POST['wpemails_cpve_fullname'],$_POST['wpemails_cpve_email_corporative'],$groups);
 					}
 				}else{
 					$wpemails_cpve_estatus = 'error';
@@ -220,19 +223,20 @@ class wpemails_cpve_postype{
 		}//condicion del status del gmail
 
 	}
-	public static function wpemails_subscription_newsletter($fullname, $emailsend){
+	public static function wpemails_subscription_newsletter($fullname, $emailsend, $groups){
 		$data_options = get_option('wpemails_cpve_newsletter');
 		$host = isset($data_options['wpemails_cpve_hostnamerelay']) ? $data_options['wpemails_cpve_hostnamerelay'] : '';
 		$apikey = isset($data_options['wpemails_cpve_apikeyrelay']) ? $data_options['wpemails_cpve_apikeyrelay'] : '';
 		$curl = curl_init('https://'.$host.'/ccm/admin/api/version/2/&type=json');
+
+
+
 		$postData = array(
 		    'function' => 'addSubscriber',
 		    'apiKey' => $apikey,
 		    'email' => $emailsend,
 		    'name' => $fullname,
-		    'groups' => array(
-		        1
-		    )
+		    'groups' => $groups
 		);
 		$post = http_build_query($postData);
 		curl_setopt($curl, CURLOPT_POST, true);
