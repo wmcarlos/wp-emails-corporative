@@ -733,10 +733,12 @@
               'txtacrocorporative':$("#txtacrocorporative").val(),
               'wpmails_cpve_ofertas':$("#wpmails_cpve_ofertas").val(),
               'wpmails_cpve_mejoras':$("#wpmails_cpve_mejoras").val(),
+              'wpemails_group_empleo':converArrayInString('wpemails_group_empleo[]'),
               'text_plan':text_plan
 
 
            };
+
             jQuery.post(ajaxurl, data, function(response) {
                   //response
                   $("#wpemails_cpve_alert").text(""+response+"").delay(1000).fadeOut(600);
@@ -758,6 +760,24 @@
             });
         }
       });
+
+  function converArrayInString(name){
+
+    var element = document.getElementsByName(name);
+    var count = element.length;
+    var cad = "";
+
+    for(var i = 0; i < count; i++){
+      if(count == (i+1)){
+        cad+= element[i].value;
+      }else{
+        cad+= element[i].value+",";
+      }
+    }
+
+    return cad;
+
+  }
 
       //FUNCIONES PARA LAS FECHAS
       var monthNames = ["","Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",

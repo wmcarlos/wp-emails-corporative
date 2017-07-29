@@ -72,8 +72,10 @@
 		$options['wpmails_cpve_ofertas'] = $_POST['wpmails_cpve_ofertas'];
 		$options['wpmails_cpve_mejoras'] = $_POST['wpmails_cpve_mejoras'];
 		$options['wpmails_cpve_text_plan'] = $_POST['text_plan'];
-		$options['wpemails_group_empleo'] = $_POST['wpemails_group_empleo'];	
+		$options['wpemails_group_empleo'] = $_POST['wpemails_group_empleo'];
 		//Personal Information
+
+
 		update_post_meta($post,'wpemails_cpve_cpt_options',$options);
 		echo "Registro Exitoso";
 		
