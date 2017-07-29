@@ -5,6 +5,7 @@ function wpemails_curl_mailrelay($postData,$curl){
 	curl_setopt($curl, CURLOPT_POST, true);
 	curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($postData));
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 	$json = curl_exec($curl);
 	if ($json === false) {
 	    die('Request failed with error: '. curl_error($curl));
