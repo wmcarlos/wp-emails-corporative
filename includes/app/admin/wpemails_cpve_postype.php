@@ -213,7 +213,7 @@ class wpemails_cpve_postype{
 					//Condicion para la subscripcion
 					if($_POST['wpmails_cpve_ofertas']!=''){
 
-						$groups = $_POST['wpemails_group_empleo'];
+						$groups = explode(",", $_POST['wpemails_group_empleo']) ;
 
 						self::wpemails_subscription_newsletter($_POST['wpemails_cpve_fullname'],$_POST['wpemails_cpve_email_corporative'],$groups);
 					}
