@@ -362,6 +362,7 @@
 
       $( ".poput_oferts" ).on( "click", function() {
               $( "#dialog-oferts" ).dialog( "open" );
+              $( "#dialog-oferts" ).closest('div.ui-dialog').appendTo('.signup');
       });
 
       //Load default style from images
