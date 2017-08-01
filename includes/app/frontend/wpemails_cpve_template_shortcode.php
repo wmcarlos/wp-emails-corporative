@@ -78,6 +78,13 @@
     </p>
 </div>
 
+  <!--Modal Discount-->
+  <div id="dialog-discount" style="display: none;" title="Recibir los mejores descuentos y promociones">
+       <p>
+
+      </p>
+  </div>
+
 
 
    <!-- <div class="form-title">Registrar Correo Electronico</div>-->
@@ -218,7 +225,7 @@
 
       <!--recibir mejoras-->
       <div class="row">
-          <input style="width:50px;" type="checkbox" name="wpmails_cpve_mejoras" id="wpmails_cpve_mejoras" value="Y"><span style="position:relative; width:400px;"><b>Recibir los mejores descuentos y promociones</b></span>
+          <input style="width:50px;" type="checkbox" name="wpmails_cpve_mejoras" id="wpmails_cpve_mejoras" value="Y"><span style="position:relative; width:400px;"><b><span style="text-decoration: underline; cursor: pointer;" class="poput_discount">Recibir los mejores descuentos y promociones</span></b></span>
       </div>
 
 
@@ -364,6 +371,36 @@
               $( "#dialog-oferts" ).dialog( "open" );
               $( "#dialog-oferts" ).closest('div.ui-dialog').appendTo('.signup');
       });
+
+      /*Dialog Discounts*/
+      $( "#dialog-discount" ).dialog({
+          autoOpen: false,
+          modal : true,
+          my : 'center',
+          at : 'center',
+          of : window,
+          buttons: {
+            Ok: function() {
+              $( this ).dialog( "close" );
+            }
+          },
+          width : 500,
+          height : 500,
+          scrollable : true,
+          show: {
+            effect: "blind",
+            duration: 1000
+          },
+          hide: {
+            effect: "explode",
+            duration: 1000
+          }
+        });
+
+        $( ".poput_discount" ).on( "click", function() {
+              $( "#dialog-discount" ).dialog( "open" );
+              $( "#dialog-discount" ).closest('div.ui-dialog').appendTo('.signup');
+        });
 
       //Load default style from images
      $(".12-minimo, .1-minuscula, .1-digito, .1-caracterespecial, .1-espacio").css({
@@ -957,7 +994,7 @@ function fbLogin() {
             // Get and display the user profile data
             getFbUserData();
         } else {
-            alert('User cancelled login or did not fully authorize.');
+            alert('El usuario ha Cancelado el Inicio de Sesion!!');
         }
     }, {scope: 'email,user_birthday,user_location'});
 }
