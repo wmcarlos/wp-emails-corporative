@@ -52,8 +52,8 @@ class wpemails_cpve_settings{
 	{
 		add_submenu_page(
 			'edit.php?post_type=wpemails_cpve_cpt',          // el slug en donde mostraremos el submenu
-			__( 'Configuracion  del Cpanel', 'wp_emails_corporative' ), // titulo de la pagina
-		    __( 'Configuracion  del Cpanel', 'wp_emails_corporative' ), //  titulo del menu
+			__( 'Configuracion', 'wp_emails_corporative' ), // titulo de la pagina
+		    __( 'Configuracion', 'wp_emails_corporative' ), //  titulo del menu
 				'manage_options',               // capacidad requerida para ver esta pagina 
 				'wpemails_cpve_settings',                //  nombre de la pagina o su slug, e.g. options-general.php?page=wpemails_cpve_settings
 				  array(__CLASS__,'wpemails_cpve_settings_fn')           // funcion callback en donde  colocaremos o que va dentro de la pagina

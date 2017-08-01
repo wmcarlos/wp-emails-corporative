@@ -2,6 +2,15 @@
 	//obtenemos los datos en caso de que ya esten guardados o los dejamos en blanco para evitar las noticias
 	$wpemailscpve_options = self::wpemails_cpve_checkoptions();
 
+  //eliminaremos todos los archivos temporales basuras que se generan
+  $files = glob(WPEMAILS_CPVE_PLUGIN_DIR.'/includes/app/admin/api/cpmm/*'); // obtiene todos los archivos
+  foreach($files as $file){
+    if(is_file($file)) // si se trata de un archivo
+      unlink($file); // lo elimina
+  }
+
+
+  //conexion con la api del cpanel
   $cpmm = new cPanelMailManager($wpemailscpve_options['user'], $wpemailscpve_options['pass'], $wpemailscpve_options['host']);
   $domains = $cpmm->getDomains();
   $cad = "";
