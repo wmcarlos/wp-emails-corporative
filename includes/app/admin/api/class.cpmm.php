@@ -97,8 +97,7 @@ class cPanelMailManager {
         "email=".$e[0]."&".
         "domain=".$e[1];
         $answer = json_decode($this->Request($url,$params), true);
-        print $answer;
-
+        
         $this->getEmails(true);
         return ($answer["cpanelresult"]["data"][0]['result'] === 1) ? true : false;
     }

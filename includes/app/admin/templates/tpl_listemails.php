@@ -7,15 +7,13 @@
 	//Separamos los datos del dominio
 	$host_ex = explode(".", $wpemails_cpve_host);
 	$host_ex[3] = (isset($host_ex[3]) and !empty($host_ex[3])) ? ".".$host_ex[3] : "";
-	$last_part_email ="@".$host_ex[1].".".$host_ex[2].$host_ex[3];
+	$last_part_email = "@".$host_ex[1].".".$host_ex[2].$host_ex[3];
 
 		//borraremos el email desde aqui
 	if($_GET['delete']){
 		if($cpmm->deleteEmail($_GET['delete'])){		
-			'<h2>Email Eliminado Con Exito</h2>
-			<a href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails">Volver</a>
-			';
-
+			print '<h2>Email Eliminado Con Exito</h2>
+			<a href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails">Volver</a>';
 		}else{
 			'<h2>No se pudo Eliminar el email</h2>';
 		}
@@ -53,7 +51,9 @@
 						<a href='edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails&delete=".$data[$i]['email']."' class='btn btn-danger delete_email' data-email='".$e_separe[0]."'><i class='fa fa-times'></i> Delete</a></td>";
 			$cad.="</tr>";
 		}
+
 	print $cad;
+	
 	echo '
 	</tbody>
 	</table>';
