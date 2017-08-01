@@ -60,12 +60,30 @@ if(!empty($host) && !empty($apikey)){
       <?php  if($wpmails_groups->status != 0) {?>
 
       <div class="row">
-      	<select name="wpemails_cpve_group">
+      	<select name="wpemails_cpve_group" style="width:50%;">
       		<option value="">Seleccione El Grupo</option>
       		<?php foreach ($wpmails_groups->data as $group) { ?>
       			<option <?php selected($group->id,$group_list); ?> value="<?php echo $group->id; ?>"><?php echo $group->name; ?></option>
       		<?php } ?>
       	</select>
+      	<input type="button" value="Ofertas de trabajo" id="button_ofertas">
+      	<input type="button" value="Descuentos y promociones" id="button_promociones">
+      </div>
+      <!--detalle para ofertas de trabajo-->
+      <br>
+      <strong>Ofertas de Trabajo</strong>
+      <div class="row" id="add_ofertas_trabajo" style="border:1px solid #ccc;">
+      	<table>
+      		<tr>
+      			<td>Cod</td>
+      			<td>Nombre</td>
+      		</tr>
+      	</table>
+      </div>
+
+      <br>
+      <strong>Descuentos y promociones</strong>
+      <div class="row" class="add_descuentos_promociones" style="border:1px solid #ccc;">
       </div>
 
       <?php } ?>
@@ -80,10 +98,16 @@ if(!empty($host) && !empty($apikey)){
   </form>
 </div>
 </center>
-
-
-
 <center>
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+		$("#button_ofertas").click(function(){
+     	   $("#add_ofertas_trabajo table").append('<tr><td>A</td></td>B</td></tr>');
+
+		});
+	});
+</script>
+
 <!--mostrando la lista de subscritos-->
 <?php
 if ($wpmails_subscribers->status == 0) {

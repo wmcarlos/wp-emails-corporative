@@ -35,7 +35,7 @@
       <div class="row" class="add_correos">
         <input type="button" value="+" class="click_correos_corporativos">
         <?php 
-          print "<select name='txtacrocorporative[]'>";
+          print "<select id='select_email_corporative'  name='txtacrocorporative[]'>";
           for($i = 0; $i < count($domains); $i++){
             $cad.= "<option value='@".$domains[$i]['basedir']."'>@".$domains[$i]['basedir']."</option>";
           }
@@ -67,8 +67,8 @@
 <script type="text/javascript">
   jQuery(document).ready(function($){
     $(".click_correos_corporativos").click(function(){
-      var cad = "<?php print $cad; ?>";
-        $(".details_correo").append('<div class="row"><input type="button" value="-" class="delete_correos_corporativos"><select name="txtacrocorporative[]">'+cad+'</select></div>');
+      var cad = $("#select_email_corporative option:selected").text();
+      $(".details_correo").append('<div class="row"><input type="button" value="-" class="delete_correos_corporativos"><input type="text" name="txtacrocorporative[]" value="'+cad+'"></div>');
     });
     $(document).on('click','.delete_correos_corporativos',function(){
       $(this).parent().remove();
