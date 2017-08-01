@@ -1,6 +1,11 @@
 <?php
 	//obtenemos los datos en caso de que ya esten guardados o los dejamos en blanco para evitar las noticias
 	$wpemailscpve_options = self::wpemails_cpve_checkoptions();
+
+  $cpmm = new cPanelMailManager($wpemailscpve_options['user'], $wpemailscpve_options['pass'], $wpemailscpve_options['host']);
+  $domains = $cpmm->getDomains();
+  $cad = "";
+
 ?>
 
 <div class="card-form" style="margin-left:20px;">
@@ -20,13 +25,20 @@
       <strong>Correos Corporativos</strong>
       <div class="row" class="add_correos">
         <input type="button" value="+" class="click_correos_corporativos">
-        <input type="text" name="txtacrocorporative[]" placeholder="Valor del correo corporativo ej. @tucompañia.com" value="<?php echo $wpemailscpve_options['txtacrocorporative'][0];  ?>">
+        <?php 
+          print "<select name='txtacrocorporative[]'>";
+          for($i = 0; $i < count($domains); $i++){
+            $cad.= "<option value='@".$domains[$i]['basedir']."'>@".$domains[$i]['basedir']."</option>";
+          }
+          print $cad;
+          print "</select>";
+        ?>
       </div>
       <div class="details_correo">
           <?php for($i=1; $i<count($wpemailscpve_options['txtacrocorporative']);$i++){ ?>
             <div class="row">
               <input type="button" value="-" class="delete_correos_corporativos">
-              <input type="text" name="txtacrocorporative[]" placeholder="Valor del correo corporativo ej. @tucompañia.com" value="<?php echo $wpemailscpve_options['txtacrocorporative'][$i];  ?>">
+              <input type="text" name="txtacrocorporative[]" readonly="readonly" placeholder="Valor del correo corporativo ej. @tucompañia.com" value="<?php echo $wpemailscpve_options['txtacrocorporative'][$i];  ?>">
             </div>
           <?php  } ?>
       </div>
@@ -46,7 +58,8 @@
 <script type="text/javascript">
   jQuery(document).ready(function($){
     $(".click_correos_corporativos").click(function(){
-        $(".details_correo").append('<div class="row"><input type="button" value="-" class="delete_correos_corporativos"><input type="text" name="txtacrocorporative[]" placeholder="Valor del correo corporativo ej. @tucompañia.com" value=""></div>');
+      var cad = "<?php print $cad; ?>";
+        $(".details_correo").append('<div class="row"><input type="button" value="-" class="delete_correos_corporativos"><select name="txtacrocorporative[]">'+cad+'</select></div>');
     });
     $(document).on('click','.delete_correos_corporativos',function(){
       $(this).parent().remove();

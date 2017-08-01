@@ -264,5 +264,20 @@ class cPanelMailManager {
         }
         return (@gzdecode($answer)) ? gzdecode($answer) : $answer;
     }
+
+    public function getDomains(){
+
+        $params = 'user='.$this->username.'&pass='.$this->password;;
+        $url = "https://".$this->cpanelHost.":".$this->cpanelPort.$this->cpsess."/json-api/cpanel".
+        "?cpanel_jsonapi_version=2".
+        "&cpanel_jsonapi_func=listaddondomains".
+        "&cpanel_jsonapi_module=AddonDomain";
+        $answer = $this->Request($url,$params);
+        $domains = json_decode($answer, true);
+        $domainArray = $domains["cpanelresult"]["data"];
+        return $domainArray;
+
+    }
+
 }
 ?>
