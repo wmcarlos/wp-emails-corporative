@@ -26,14 +26,14 @@ $getSubscribers = array(
     'function' => 'getSubscribers',
     'apiKey' => $apikey,
     'offset' => 0,
-    'count' => 2
+    'count' => 100
 );
 /*Obtener los grupos*/
 $getGroups = array(
     'function' => 'getGroups',
     'apiKey' => $apikey,
     'offset' => 0,
-    'count' => 2,
+    'count' => 100,
 ); 
 
 
