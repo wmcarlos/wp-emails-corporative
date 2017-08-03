@@ -212,10 +212,10 @@ class wpemails_cpve_postype{
 					add_filter('wp_mail_from_name', 'new_mail_from_name');
 					 
 					function new_mail_from($old) {
-					 return 'noreply@estudiantesdelabiblia.com.ve';
+					 return 'no-reply@proeduca.org.ve';
 					}
 					function new_mail_from_name($old) {
-					 return 'Estudiantes de la Biblia';
+					 return 'Pro-Educa Correo Corporativo';
 					}			
 					//End Changes
 					wp_mail($to, $subject, $body, $headers);

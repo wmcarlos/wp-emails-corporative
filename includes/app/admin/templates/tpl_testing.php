@@ -1,5 +1,4 @@
 <?php
-	
 //obtenemos los datos en caso de que ya esten guardados o los dejamos en blanco para evitar las noticias
 $wpemails_cpve_options['txtdomain'] = isset($wpemails_cpve_options['txtdomain']) ? $wpemails_cpve_options['txtdomain'] : '';
 

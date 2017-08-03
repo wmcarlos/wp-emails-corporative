@@ -56,7 +56,7 @@
   <!--Modal Discount-->
   <div id="dialog-discount" style="display: none;" title="Recibir los mejores descuentos y promociones">
        <p>
-                <div class="row">
+        <div class="row">
           <table >
             <?php for($i=0; $i < count($group_ids); $i++) { 
                 if($group_types[$i] == "Descuentos y Promociones"){
