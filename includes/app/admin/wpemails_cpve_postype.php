@@ -193,13 +193,19 @@ class wpemails_cpve_postype{
 					$wpemails_cpve_estatus = 'success';
 					//Obtenemos la plantilla de mensaje creada
 					$wpemails_cpve_template = get_option('wpemails_cpve_template');
+					//vamos a transformar nuestro template email
+					$wpemails_cpve_template['wpemails_cpve_template'].str_replace('{{fullname}}', $_POST['wpemails_cpve_fullname'], $wpemails_cpve_template['wpemails_cpve_template']);
+					$wpemails_cpve_template['wpemails_cpve_template'].str_replace('{{email}}', $_POST['wpemails_cpve_email_send'], $wpemails_cpve_template['wpemails_cpve_template']);
+					$wpemails_cpve_template['wpemails_cpve_template'].str_replace('{{email_corporative}}', $_POST['wpemails_cpve_email_corporative'], $wpemails_cpve_template['wpemails_cpve_template']);
+					$wpemails_cpve_template['wpemails_cpve_template'].str_replace('{{plan}}', $_POST['wpemails_cpve_plan'], $wpemails_cpve_template['wpemails_cpve_template']);
+					$wpemails_cpve_template['wpemails_cpve_template'].str_replace('{{city}}', $_POST['wpemails_cpve_full_direction'], $wpemails_cpve_template['wpemails_cpve_template']);
+					//closed mail template
+
 
 					//=====enviamos un correo electronico al usuario===
 					$to = $_POST['wpemails_cpve_email_send'];
 					$subject = 'Estatus del correo corporativo '.$_POST['wpemails_cpve_email_corporative'];
-					$body = '<h1>Enhorabuena</h1> <p>Estimado '.$_POST['wpemails_cpve_fullname'].' se le ha aceptado la solicitud de su correo electronico corporativo, puede comenzar a disfrutar ya de nuestros servicios!</p>
-					<p>Sus datos Registrados Fueron: <br> <strong>Email:</strong>'.$_POST['wpemails_cpve_email_corporative'].' <br> <strong>Contraseña: </strong>'.$_POST['wpemails_cpve_email_password'].'</p>
-					<p><strong>Cuota :</strong>'.$_POST['wpemails_cpve_plan'];
+					$body = $wpemails_cpve_template['wpemails_cpve_template'];
 					$headers = array('Content-Type: text/html; charset=UTF-8');
 					//Changes
 					add_filter('wp_mail_from', 'new_mail_from');
