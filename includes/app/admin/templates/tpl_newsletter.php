@@ -73,10 +73,11 @@ if(!empty($host) && !empty($apikey)){
       <br>
       <strong>Ofertas de Trabajo</strong>
       <div class="row" id="add_ofertas_trabajo" style="border:1px solid #ccc;">
-      	<table>
+      	<table width="100%">
       		<tr>
       			<td>Cod</td>
       			<td>Nombre</td>
+      			<td>--</td>
       		</tr>
       	</table>
       </div>
@@ -102,7 +103,7 @@ if(!empty($host) && !empty($apikey)){
 <script type="text/javascript">
 	jQuery(document).ready(function($){
 		$("#button_ofertas").click(function(){
-     	   $("#add_ofertas_trabajo table").append('<tr><td>A</td></td>B</td></tr>');
+     	   $("#add_ofertas_trabajo table").append('<tr><td>A</td><td>B</td></tr>');
 
 		});
 	});
