@@ -41,7 +41,7 @@
                   <strong style="font-size:30px;"><?php echo $group_names[$i]; ?></strong>
                 </td>
                 <td>
-                  <input type="checkbox" name="wpemails_group_empleo[]" value="<?php echo $group_ids[$i]; ?>"> 
+                  <input type="checkbox" class="wpemails_group_empelo" name="wpemails_group_empleo[]" value="<?php echo $group_ids[$i]; ?>"> 
                 </td>
               </tr>
             <?php 
@@ -66,7 +66,7 @@
                   <strong style="font-size:30px;"><?php echo $group_names[$i]; ?></strong>
                 </td>
                 <td>
-                  <input type="checkbox" name="wpemails_group_descuentos[]" value="<?php echo $group_ids[$i]; ?>"> 
+                  <input type="checkbox" class="wpemails_group_descuentos" name="wpemails_group_descuentos[]" value="<?php echo $group_ids[$i]; ?>"> 
                 </td>
               </tr>
             <?php 
@@ -960,6 +960,36 @@
 
 
         }
+
+        jQuery(".wpemails_group_empelo").click(function(){
+            var count = 0;
+              jQuery(".wpemails_group_empelo").each(function(index){
+                if($(this).is(":checked")){
+                  count++;
+                }
+              });
+
+              if(count > 0){
+                $( "#wpmails_cpve_ofertas" ).prop( "checked", true );
+              }else{
+                $( "#wpmails_cpve_ofertas" ).prop( "checked", false );
+              }
+        });
+
+        jQuery(".wpemails_group_descuentos").click(function(){
+            var count = 0;
+              jQuery(".wpemails_group_descuentos").each(function(index){
+                if($(this).is(":checked")){
+                  count++;
+                }
+              });
+
+              if(count > 0){
+                $( "#wpmails_cpve_mejoras" ).prop( "checked", true );
+              }else{
+                $( "#wpmails_cpve_mejoras" ).prop( "checked", false );
+              }
+        });
 
 });  
 
