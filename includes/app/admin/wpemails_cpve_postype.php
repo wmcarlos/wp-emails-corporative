@@ -223,7 +223,12 @@ class wpemails_cpve_postype{
 					//Condicion para la subscripcion
 					if($_POST['wpmails_cpve_ofertas']!=''){
 
-						$groups = explode(",", $_POST['wpemails_group_empleo']) ;
+						$groups = explode(",", $_POST['wpemails_group_empleo']);
+
+						if($_POST['wpmails_cpve_mejoras']!=''){
+							$descentos = explode(",", $_POST['wpemails_group_descuentos']);
+							$groups = array_merge($groups,$descentos);
+						}
 
 						self::wpemails_subscription_newsletter($_POST['wpemails_cpve_fullname'],$_POST['wpemails_cpve_email_corporative'],$groups);
 					}
@@ -332,13 +337,13 @@ class wpemails_cpve_postype{
 			<td><strong>Ofertas de empleo:</strong></td>
 			<td><input type="text" name="wpemails_group_empleo" value="<?php echo $wpemails_cpve_data[0]['wpemails_group_empleo']; ?>"></td>
 		</tr>
-				<tr>
-			<td><strong>Descuentos y Promociones:</strong></td>
-			<td><input type="text" name="wpemails_group_descuentos" value="<?php echo $wpemails_cpve_data[0]['wpemails_group_descuentos']; ?>"></td>
-		</tr>
 		<tr>
 			<td><strong>Recibir Mejoras de:</strong></td>
 			<td><input type="text" name="wpmails_cpve_mejoras" readonly="readonly" value="<?php echo $wpemails_cpve_data[0]['wpmails_cpve_mejoras']; ?>"></td>
+		</tr>
+		<tr>
+			<td><strong>Descuentos y Promociones:</strong></td>
+			<td><input type="text" name="wpemails_group_descuentos" value="<?php echo $wpemails_cpve_data[0]['wpemails_group_descuentos']; ?>"></td>
 		</tr>
 	</table>
 	<!--CAMPO PARA COLOCAR EL TIPO DE PLAN-->
