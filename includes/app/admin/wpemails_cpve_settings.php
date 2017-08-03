@@ -163,7 +163,7 @@ class wpemails_cpve_settings{
 		<ol class="wpemails_cpve_listmenu">
 			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=config"><li class="class_config">Configuración</li></a>
 			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=emails"><li class="class_emails">Lista de correos</li></a>
-			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=testing"><li class="class_testing">Pruebas</li></a>
+			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=testing"><li class="class_testing">Auto Respuestas</li></a>
 			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=newsletter"><li class="class_newsletter">Newsletter</li></a>
 			<a style="color:white !important;" href="edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=terminos"><li class="class_terminos">Terminos y Condiciones</li></a>
 		</ol>';
