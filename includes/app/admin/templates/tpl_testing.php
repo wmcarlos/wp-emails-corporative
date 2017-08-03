@@ -5,6 +5,7 @@ $wpemails_cpve_options['txtdomain'] = isset($wpemails_cpve_options['txtdomain'])
 //conexion con la api del cpanel
 $d = get_option("wpemails_cpve_options");
 $options = $d['txtacrocorporative'];
+
 ?>
 <center>
 <div class="card-form" style="margin-left:20px;">

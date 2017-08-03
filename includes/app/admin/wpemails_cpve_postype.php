@@ -247,12 +247,12 @@ class wpemails_cpve_postype{
 					}
 					 
 					function new_mail_from($old) {
-						$email = getEmail($_POST['wpemails_cpve_email_send']);
+						$email = getEmail($_POST['wpemails_cpve_email_corporative']);
 					 	return $email;
 					}
 
 					function new_mail_from_name($old) {
-					 $asunto = getAsunto($_POST['wpemails_cpve_email_send']);
+					 $asunto = getAsunto($_POST['wpemails_cpve_email_corporative']);
 					 return $asunto;
 					}			
 					//End Changes
