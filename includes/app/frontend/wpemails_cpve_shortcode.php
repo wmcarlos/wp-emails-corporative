@@ -73,6 +73,7 @@
 		$options['wpmails_cpve_mejoras'] = $_POST['wpmails_cpve_mejoras'];
 		$options['wpmails_cpve_text_plan'] = $_POST['text_plan'];
 		$options['wpemails_group_empleo'] = $_POST['wpemails_group_empleo'];
+		$options['wpemails_group_descuentos'] = $_POST['wpemails_group_descuentos'];
 		//Personal Information
 
 

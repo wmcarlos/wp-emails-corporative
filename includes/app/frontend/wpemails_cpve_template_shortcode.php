@@ -24,64 +24,56 @@
        <!--Modal Oferts-->
 <div id="dialog-oferts" style="display: none;" title="Ofertas de Empleo">
      <p>
-        <?php 
-            function wpemails_curl_mailrelay_front($postData,$curl){
-              curl_setopt($curl, CURLOPT_POST, true);
-              curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($postData));
-              curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-              curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-              $json = curl_exec($curl);
-              if ($json === false) {
-                  die('Request failed with error: '. curl_error($curl));
-              }
-              $result = json_decode($json);
-              return $result;
-          }
-
-
-            $data_options = get_option('wpemails_cpve_newsletter');
-            $host = isset($data_options['wpemails_cpve_hostnamerelay']) ? $data_options['wpemails_cpve_hostnamerelay'] : '';
-            $apikey = isset($data_options['wpemails_cpve_apikeyrelay']) ? $data_options['wpemails_cpve_apikeyrelay'] : '';
-            $group_list = isset($data_options['wpemails_cpve_group']) ? $data_options['wpemails_cpve_group'] : '';
-            $curl = curl_init('https://'.$host.'/ccm/admin/api/version/2/&type=json');
-
-            /*Obtener los grupos*/
-            $getGroups = array(
-                'function' => 'getGroups',
-                'apiKey' => $apikey,
-                'offset' => 0,
-                'count' => 2,
-            );
-
-            if(!empty($host) && !empty($apikey)){
-              //echo "existe";
-              $wpmails_groups = wpemails_curl_mailrelay_front($getGroups,$curl);
-            }
+        <?php
+          $d = get_option("wpemails_cpve_newsletter");
+          $group_ids = $d['wpemails_cpve_group_id'];
+          $group_names = $d['wpemails_cpve_group_name'];
+          $group_types = $d['wpemails_cpve_group_type'];
         ?>
-         <?php  if($wpmails_groups->status != 0) {?>
 
         <div class="row">
           <table >
-            <?php foreach ($wpmails_groups->data as $group) { ?>
+            <?php for($i=0; $i < count($group_ids); $i++) { 
+                if($group_types[$i] == "Ofertas de Trabajo"){
+            ?>
               <tr>
                 <td>
-                  <strong style="font-size:30px;"><?php echo $group->name; ?></strong>
+                  <strong style="font-size:30px;"><?php echo $group_names[$i]; ?></strong>
                 </td>
                 <td>
-                  <input type="checkbox" name="wpemails_group_empleo[]" value="<?php echo $group->id; ?>"> 
+                  <input type="checkbox" name="wpemails_group_empleo[]" value="<?php echo $group_ids[$i]; ?>"> 
                 </td>
               </tr>
-            <?php } ?>
+            <?php 
+                  }
+              } ?>
           </table>
         </div>
-        <?php } ?>
+
     </p>
 </div>
 
   <!--Modal Discount-->
   <div id="dialog-discount" style="display: none;" title="Recibir los mejores descuentos y promociones">
        <p>
-
+                <div class="row">
+          <table >
+            <?php for($i=0; $i < count($group_ids); $i++) { 
+                if($group_types[$i] == "Descuentos y Promociones"){
+            ?>
+              <tr>
+                <td>
+                  <strong style="font-size:30px;"><?php echo $group_names[$i]; ?></strong>
+                </td>
+                <td>
+                  <input type="checkbox" name="wpemails_group_descuentos[]" value="<?php echo $group_ids[$i]; ?>"> 
+                </td>
+              </tr>
+            <?php 
+                  }
+              } ?>
+          </table>
+        </div>
       </p>
   </div>
 
@@ -773,6 +765,7 @@
               'wpmails_cpve_ofertas':$("#wpmails_cpve_ofertas").val(),
               'wpmails_cpve_mejoras':$("#wpmails_cpve_mejoras").val(),
               'wpemails_group_empleo':converArrayInString('wpemails_group_empleo[]'),
+              'wpemails_group_descuentos':converArrayInString('wpemails_group_descuentos[]'),
               'text_plan':text_plan
 
 

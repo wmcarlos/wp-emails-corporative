@@ -97,9 +97,7 @@ class wpemails_cpve_settings{
 		$wpemailscpve_options['wpemails_cpve_hostnamerelay'] = $_POST['wpemails_cpve_hostnamerelay'];
 
 		$wpemailscpve_options['wpemails_cpve_apikeyrelay'] = $_POST['wpemails_cpve_apikeyrelay'];
-
-		//$wpemailscpve_options['wpemails_cpve_group'] = $_POST['wpemails_cpve_group'];
-
+		
 		$wpemailscpve_options['wpemails_cpve_group_id'] = $_POST['wpemails_cpve_group_id'];
 
 		$wpemailscpve_options['wpemails_cpve_group_name'] = $_POST['wpemails_cpve_group_name'];

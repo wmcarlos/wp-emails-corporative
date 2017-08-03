@@ -332,6 +332,10 @@ class wpemails_cpve_postype{
 			<td><strong>Ofertas de empleo:</strong></td>
 			<td><input type="text" name="wpemails_group_empleo" value="<?php echo $wpemails_cpve_data[0]['wpemails_group_empleo']; ?>"></td>
 		</tr>
+				<tr>
+			<td><strong>Descuentos y Promociones:</strong></td>
+			<td><input type="text" name="wpemails_group_descuentos" value="<?php echo $wpemails_cpve_data[0]['wpemails_group_descuentos']; ?>"></td>
+		</tr>
 		<tr>
 			<td><strong>Recibir Mejoras de:</strong></td>
 			<td><input type="text" name="wpmails_cpve_mejoras" readonly="readonly" value="<?php echo $wpemails_cpve_data[0]['wpmails_cpve_mejoras']; ?>"></td>
