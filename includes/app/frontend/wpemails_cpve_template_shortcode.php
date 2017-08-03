@@ -270,14 +270,16 @@
   }
   .wpemails_help_password{
     position: absolute;
-    background-color: black;
-    color: white;
+    background-color: #DDDCDB;
+    color: black;
     margin-top: -230px;
     margin-left: 170px;
   }
   .wpemails_help_password span{
     font-size: 12px !important;
     display: block;
+    font-weight: bold;
+    color: black !important;
   }
   </style>
   <?php 
