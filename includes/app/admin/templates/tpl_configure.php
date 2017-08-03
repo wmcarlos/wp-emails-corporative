@@ -16,7 +16,7 @@
   $cad = "";
 
 ?>
-
+<center>
 <div class="card-form" style="margin-left:20px;">
   <form class="signup" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
 	<input type="hidden" name="action" value="wpemails_cpve_importdata">
@@ -60,7 +60,7 @@
     </div>
   </form>
 </div>
-
+</center>
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
 </style>

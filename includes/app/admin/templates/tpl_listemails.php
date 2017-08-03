@@ -32,7 +32,7 @@
 		}
 	}
 
-	echo '<table class="wpemails_cpve_table_settings" cellpading="0" cellspacing="0">';
+	echo '<center><table class="wpemails_cpve_table_settings" cellpading="0" cellspacing="0">';
 	echo '
 	<thead>
 	<tr>
@@ -56,7 +56,7 @@
 	
 	echo '
 	</tbody>
-	</table>';
+	</table></center>';
 	
 
 }//cierre del else delete email
