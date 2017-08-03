@@ -40,6 +40,13 @@ $getGroups = array(
 if(!empty($host) && !empty($apikey)){
 	$wpmails_subscribers = wpemails_curl_mailrelay($getSubscribers,$curl);
 	$wpmails_groups = wpemails_curl_mailrelay($getGroups,$curl);
+
+  $d = get_option("wpemails_cpve_newsletter");
+
+  $group_ids = $d['wpemails_cpve_group_id'];
+  $group_names = $d['wpemails_cpve_group_name'];
+  $group_types = $d['wpemails_cpve_group_type'];
+  
 }
 
 ?>
@@ -60,32 +67,39 @@ if(!empty($host) && !empty($apikey)){
       <?php  if($wpmails_groups->status != 0) {?>
 
       <div class="row">
-      	<select name="wpemails_cpve_group" style="width:50%;">
+      	<select name="wpemails_cpve_group" id="wpemails_cpve_group" style="width:60%;">
       		<option value="">Seleccione El Grupo</option>
       		<?php foreach ($wpmails_groups->data as $group) { ?>
       			<option <?php selected($group->id,$group_list); ?> value="<?php echo $group->id; ?>"><?php echo $group->name; ?></option>
       		<?php } ?>
       	</select>
-      	<input type="button" value="Ofertas de trabajo" id="button_ofertas">
-      	<input type="button" value="Descuentos y promociones" id="button_promociones">
+        <select name="wpemails_cpve_group_type" id="wpemails_cpve_group_type">
+            <option value="">Seleccione</option>
+            <option value="Ofertas de Trabajo">Ofertas de Trabajo</option>
+            <option value="Descuentos y Promociones">Descuentos y Promociones</option>
+        </select>
+      	<input type="button" value="+" id="button_ofertas">
       </div>
       <!--detalle para ofertas de trabajo-->
       <br>
-      <strong>Ofertas de Trabajo</strong>
-      <div class="row" id="add_ofertas_trabajo" style="border:1px solid #ccc;">
-      	<table width="100%">
-      		<tr>
-      			<td>Cod</td>
-      			<td>Nombre</td>
-      			<td>--</td>
-      		</tr>
-      	</table>
-      </div>
-
-      <br>
-      <strong>Descuentos y promociones</strong>
-      <div class="row" class="add_descuentos_promociones" style="border:1px solid #ccc;">
-      </div>
+      <table border="1" width="100%">
+        <thead>
+          <th>Grupo</th>
+          <th>Tipo</th>
+          <th>-</th>
+        </thead>
+        <tbody id="load_details">
+            <?php 
+              $cad = "";
+              for($i=0; $i < count($group_ids); $i++){
+                $cad.="<tr>";
+          $cad.="<td><input type='hidden' name='wpemails_cpve_group_id[]' value='".$group_ids[$i]."'/><input type='hidden' name='wpemails_cpve_group_name[]' value='".$group_names[$i]."'/>".$group_names[$i]."</td><td><input type='hidden' name='wpemails_cpve_group_type[]' value='".$group_types[$i]."'/>".$group_types[$i]."</td><td><button type='button' class='delete_detail'>X</button></td>";
+        $cad.="</tr>";
+              }
+              print $cad;
+            ?>
+        </tbody>
+      </table>
 
       <?php } ?>
       
@@ -103,9 +117,23 @@ if(!empty($host) && !empty($apikey)){
 <script type="text/javascript">
 	jQuery(document).ready(function($){
 		$("#button_ofertas").click(function(){
-     	   $("#add_ofertas_trabajo table").append('<tr><td>A</td><td>B</td></tr>');
+     	  var g_id =  $("#wpemails_cpve_group").val();
+        var g_name = $("#wpemails_cpve_group option:selected").text();
+        var g_type = $("#wpemails_cpve_group_type").val();
 
+        var cad = "";
+
+        cad+="<tr>";
+          cad+="<td><input type='hidden' name='wpemails_cpve_group_id[]' value='"+g_id+"'/><input type='hidden' name='wpemails_cpve_group_name[]' value='"+g_name+"'/>"+g_name+"</td><td><input type='hidden' name='wpemails_cpve_group_type[]' value='"+g_type+"'/>"+g_type+"</td><td><button type='button' class='delete_detail'>X</button></td>";
+        cad+="</tr>";
+
+        $("#load_details").append(cad);
 		});
+
+    $("body").on("click",".delete_detail",function(){
+        $(this).parent().parent().remove();
+    });
+
 	});
 </script>
 

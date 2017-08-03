@@ -95,9 +95,19 @@ class wpemails_cpve_settings{
 	//Recibir lo datos de configuracion del newsletter via post
 	public static function wpemails_cpve_newsletter_callback(){
 		$wpemailscpve_options['wpemails_cpve_hostnamerelay'] = $_POST['wpemails_cpve_hostnamerelay'];
+
 		$wpemailscpve_options['wpemails_cpve_apikeyrelay'] = $_POST['wpemails_cpve_apikeyrelay'];
-		$wpemailscpve_options['wpemails_cpve_group'] = $_POST['wpemails_cpve_group'];
+
+		//$wpemailscpve_options['wpemails_cpve_group'] = $_POST['wpemails_cpve_group'];
+
+		$wpemailscpve_options['wpemails_cpve_group_id'] = $_POST['wpemails_cpve_group_id'];
+
+		$wpemailscpve_options['wpemails_cpve_group_name'] = $_POST['wpemails_cpve_group_name'];
+
+		$wpemailscpve_options['wpemails_cpve_group_type'] = $_POST['wpemails_cpve_group_type'];
+
 		update_option('wpemails_cpve_newsletter',$wpemailscpve_options);
+
 		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=newsletter'));
 
 	}
