@@ -176,6 +176,7 @@ class wpemails_cpve_postype{
 	<?php
 	}
 
+	/****************************************************************************************************************/
 	//===============FORMULARIO DE VISUALIZACION EN  EL PANEL ADMIN SOBRE LOS DATOS DE LOS CLIENTES=========
 	public static function wpemails_cpve_postype_mtb(){
 		add_meta_box('wpemails_cpve_postype_mtbx', 'Datos Personales',array(__CLASS__,'wpemails_cpve_postype_mtbx_callback'), array('wpemails_cpve_cpt'), 'normal', 'default');
@@ -190,6 +191,9 @@ class wpemails_cpve_postype{
 			$cpmm2 = new cPanelMailManager($wpemailscpve_options['user'], $wpemailscpve_options['pass'], $wpemailscpve_options['host']);
 			if($cpmm2->createEmail($_POST['wpemails_cpve_email_corporative'],$_POST['wpemails_cpve_email_password'],$_POST['wpemails_cpve_plan'])){
 					$wpemails_cpve_estatus = 'success';
+					//Obtenemos la plantilla de mensaje creada
+					$wpemails_cpve_template = get_option('wpemails_cpve_template');
+
 					//=====enviamos un correo electronico al usuario===
 					$to = $_POST['wpemails_cpve_email_send'];
 					$subject = 'Estatus del correo corporativo '.$_POST['wpemails_cpve_email_corporative'];

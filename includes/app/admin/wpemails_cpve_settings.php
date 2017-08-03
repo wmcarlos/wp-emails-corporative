@@ -20,6 +20,9 @@ class wpemails_cpve_settings{
 		add_action( 'admin_post_wpemails_cpve_newsletter', array(__CLASS__,'wpemails_cpve_newsletter_callback'));	
 		//guardar los terminos de condiciones
 		add_action( 'admin_post_wpemails_cpve_terminos', array(__CLASS__,'wpemails_cpve_terminos_callback'));	
+		//guardar las plantilla de correo
+		add_action( 'admin_post_wpemails_cpve_template', array(__CLASS__,'wpemails_cpve_template_callback'));	
+
 
 	}
 
@@ -49,7 +52,8 @@ class wpemails_cpve_settings{
 	/**************************************/
 	//creacion del submenu dentro del menu configuracion
 	public static function wpemails_cpve_options_submenu_settings()
-	{
+	{	
+		//Agregamos menu de configuracion
 		add_submenu_page(
 			'edit.php?post_type=wpemails_cpve_cpt',          // el slug en donde mostraremos el submenu
 			__( 'Configuracion', 'wp_emails_corporative' ), // titulo de la pagina
@@ -57,8 +61,19 @@ class wpemails_cpve_settings{
 				'manage_options',               // capacidad requerida para ver esta pagina 
 				'wpemails_cpve_settings',                //  nombre de la pagina o su slug, e.g. options-general.php?page=wpemails_cpve_settings
 				  array(__CLASS__,'wpemails_cpve_settings_fn')           // funcion callback en donde  colocaremos o que va dentro de la pagina
-			);
-	}
+		);
+		
+		//Agregamos menu de configuracion de correos electronicos
+				add_submenu_page(
+			'edit.php?post_type=wpemails_cpve_cpt',          // el slug en donde mostraremos el submenu
+			__( 'Plantillas de correo', 'wp_emails_corporative' ), // titulo de la pagina
+		    __( 'Plantillas de correo', 'wp_emails_corporative' ), //  titulo del menu
+				'manage_options',               // capacidad requerida para ver esta pagina 
+				'wpemails_cpve_template',                //  nombre de la pagina o su slug, e.g. options-general.php?page=wpemails_cpve_settings
+				  array(__CLASS__,'wpemails_cpve_template_fn')           // funcion callback en donde  colocaremos o que va dentro de la pagina
+		);
+		
+	}	
 
 
 	/*Recibir los datos de terminos y condiciones*/
@@ -68,6 +83,13 @@ class wpemails_cpve_settings{
 		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=terminos'));
 
 	}
+	//**Recibir los datos de plantillas de correo
+	public static function wpemails_cpve_template_callback(){
+		$wpemailscpve_options['wpemails_cpve_template'] = $_POST['wpemails_cpve_template'];
+		update_option('wpemails_cpve_template',$wpemailscpve_options);
+		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_template'));
+	}
+
 
 	/**************************************************/
 	//Recibir lo datos de configuracion del newsletter via post
@@ -155,5 +177,10 @@ class wpemails_cpve_settings{
 
 	}
 
+
+	/*******************************PAGINA PARA EL TEMPLATES DE EMAIL******************************/
+	public static function wpemails_cpve_template_fn(){
+		include_once('templates/tpl_email_template.php');
+	}
 }
 new wpemails_cpve_settings();	
