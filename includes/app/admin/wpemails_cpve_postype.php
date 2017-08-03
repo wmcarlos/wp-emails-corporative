@@ -214,40 +214,46 @@ class wpemails_cpve_postype{
 					function getEmail($email){
 						$d = get_option('wpemails_cpve_emails');
 			            $emails = $d['wpemails_cpve_emails'];
-
 			            $e_part = explode("@", $email);
+
+			            $e_return = 'wordpress@'.$e_part[1];
 
 			            for($i=0;$i<count($emails);$i++){
 			            	$de_part = explode("@", $emails[$i]);
 			            	if($e_part[1] == $de_part[1]){
-			            		return $emails[$i];
+			            		$e_return = $emails[$i];
 			            	}
 			            }
+
+			            return $e_return;
 					}
 
 					function getAsunto($email){
+
 						$d = get_option('wpemails_cpve_emails');
 			            $emails = $d['wpemails_cpve_emails'];
 			            $asuntos = $d['wpemails_cpve_asuntos'];
-
 			            $e_part = explode("@", $email);
+			            $a_return = 'Correo Corporativo';
 
 			            for($i=0;$i<count($emails);$i++){
 			            	$de_part = explode("@", $emails[$i]);
 			            	if($e_part[1] == $de_part[1]){
-			            		return $asuntos[$i];
+			            		$a_return = $asuntos[$i];
 			            	}
 			            }
+
+			            return $a_return;
 					}
 					 
 					function new_mail_from($old) {
 						$email = getEmail($_POST['wpemails_cpve_email_send']);
 					 	return $email;
 					}
-					
+
 					function new_mail_from_name($old) {
 					 $asunto = getAsunto($_POST['wpemails_cpve_email_send']);
-					 	return $asunto;
+					 return $asunto;
 					}			
 					//End Changes
 					wp_mail($to, $subject, $body, $headers);
