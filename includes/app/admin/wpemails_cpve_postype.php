@@ -210,12 +210,44 @@ class wpemails_cpve_postype{
 					//Changes
 					add_filter('wp_mail_from', 'new_mail_from');
 					add_filter('wp_mail_from_name', 'new_mail_from_name');
+
+					function getEmail($email){
+						$d = get_option('wpemails_cpve_emails');
+			            $emails = $d['wpemails_cpve_emails'];
+
+			            $e_part = explode("@", $email);
+
+			            for($i=0;$i<count($emails);$i++){
+			            	$de_part = explode("@", $emails[$i]);
+			            	if($e_part[1] == $de_part[1]){
+			            		return $emails[$i];
+			            	}
+			            }
+					}
+
+					function getAsunto($email){
+						$d = get_option('wpemails_cpve_emails');
+			            $emails = $d['wpemails_cpve_emails'];
+			            $asuntos = $d['wpemails_cpve_asuntos'];
+
+			            $e_part = explode("@", $email);
+
+			            for($i=0;$i<count($emails);$i++){
+			            	$de_part = explode("@", $emails[$i]);
+			            	if($e_part[1] == $de_part[1]){
+			            		return $asuntos[$i];
+			            	}
+			            }
+					}
 					 
 					function new_mail_from($old) {
-					 return 'no-reply@proeduca.org.ve';
+						$email = getEmail($_POST['wpemails_cpve_email_send']);
+					 	return $email;
 					}
+					
 					function new_mail_from_name($old) {
-					 return 'Pro-Educa Correo Corporativo';
+					 $asunto = getAsunto($_POST['wpemails_cpve_email_send']);
+					 	return $asunto;
 					}			
 					//End Changes
 					wp_mail($to, $subject, $body, $headers);
@@ -226,8 +258,8 @@ class wpemails_cpve_postype{
 						$groups = explode(",", $_POST['wpemails_group_empleo']);
 
 						if($_POST['wpmails_cpve_mejoras']!=''){
-							$descentos = explode(",", $_POST['wpemails_group_descuentos']);
-							$groups = array_merge($groups,$descentos);
+							$descuentos = explode(",", $_POST['wpemails_group_descuentos']);
+							$groups = array_merge($groups,$descuentos);
 						}
 
 						self::wpemails_subscription_newsletter($_POST['wpemails_cpve_fullname'],$_POST['wpemails_cpve_email_corporative'],$groups);
@@ -243,8 +275,6 @@ class wpemails_cpve_postype{
 		$host = isset($data_options['wpemails_cpve_hostnamerelay']) ? $data_options['wpemails_cpve_hostnamerelay'] : '';
 		$apikey = isset($data_options['wpemails_cpve_apikeyrelay']) ? $data_options['wpemails_cpve_apikeyrelay'] : '';
 		$curl = curl_init('https://'.$host.'/ccm/admin/api/version/2/&type=json');
-
-
 
 		$postData = array(
 		    'function' => 'addSubscriber',

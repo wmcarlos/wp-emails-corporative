@@ -128,13 +128,20 @@ class wpemails_cpve_settings{
 	/**************************************************/
 	//recibir los datos via post para el testing de correos
 	public static function wpemails_cpve_testingdata_callback(){
-		$wpemailscpve_options = self::wpemails_cpve_checkoptions();
+
+		/*$wpemailscpve_options = self::wpemails_cpve_checkoptions();
 		$cpmm = new cPanelMailManager($wpemailscpve_options['user'], $wpemailscpve_options['pass'], $wpemailscpve_options['host']);
 		if($cpmm->createEmail($_POST['wpemails_cpve_email'],$_POST['wpemails_cpve_password'],$_POST['wpemails_cpve_quota'])){
 				$wpemails_cpve_estatus = 'success';
 			}else{
 				$wpemails_cpve_estatus = 'error';
-		}
+		}*/
+
+		$wpemails_cpve_options['wpemails_cpve_emails'] = $_POST['wpemails_cpve_emails'];
+		$wpemails_cpve_options['wpemails_cpve_asuntos'] = $_POST['wpemails_cpve_asuntos'];
+
+		update_option('wpemails_cpve_emails',$wpemails_cpve_options);
+
 		wp_redirect(admin_url('edit.php?post_type=wpemails_cpve_cpt&page=wpemails_cpve_settings&section=testing&estatus='.$wpemails_cpve_estatus));
 	}
 
