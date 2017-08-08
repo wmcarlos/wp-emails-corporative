@@ -5,8 +5,10 @@ class wpemails_cpve_postype{
 		add_action('init',array(__CLASS__, 'wpemails_cpve_postype_plan_fn'));
 		add_action('add_meta_boxes',array(__CLASS__,'wpemails_cpve_postype_mtb'));
 		add_action('add_meta_boxes',array(__CLASS__,'wpmails_cpve_plan_mtb'));
+		add_action('add_meta_boxes',array(__CLASS__,'wpmails_cpve_plan_price'));
 		add_action('save_post',array(__CLASS__,'wpemails_cpve_savemetabox'));
 		add_action('save_post',array(__CLASS__,'wpemails_cpve_saveplan'));
+		add_action('save_post',array(__CLASS__,'wpemails_cpve_saveplanprice'));
 	}
 	public static function wpemails_cpve_postype_plan_fn(){
 	
@@ -85,12 +87,28 @@ class wpemails_cpve_postype{
 		$dataplan['wpmails_cpve_terminos_check'] =  isset($_POST['wpmails_cpve_terminos_check']) ? $_POST['wpmails_cpve_terminos_check'] : '';
 		$dataplan['wpemails_cpve_recibir_ofertas_check'] =  isset($_POST['wpemails_cpve_recibir_ofertas_check']) ? $_POST['wpemails_cpve_recibir_ofertas_check'] : '';
 		$dataplan['wpemails_cpve_recibir_mejoras_check'] =  isset($_POST['wpemails_cpve_recibir_mejoras_check']) ? $_POST['wpemails_cpve_recibir_mejoras_check'] : '';
+		$dataplan['wpemails_cpve_plan_price'] = isset($_POST['wpemails_cpve_plan_price']) ? $_POST['wpemails_cpve_plan_price'] : '';
 		update_post_meta($post,'wpemails_cpve_cpt_plan',$dataplan);
 	}
 	//CAMPOS PARA EL POSTYPE DE PLANES
 	public static function wpmails_cpve_plan_mtb(){
 		add_meta_box('wpmails_cpve_plan_mtbx', 'Reglas de campos',array(__CLASS__,'wpmails_cpve_plan_callback'), array('wpemails_cpve_planes'), 'normal', 'default');
 	}
+
+	//CAMPOS PARA EL POSTYPE DE PLANES
+	public static function wpmails_cpve_plan_price(){
+		add_meta_box('wpmails_cpve_plan_price_mtbx', 'Precio del Plan ($)',array(__CLASS__,'wpmails_cpve_plan_price_callback'), array('wpemails_cpve_planes'), 'normal', 'default');
+	}
+
+	public static function wpmails_cpve_plan_price_callback($post){
+		$wpemails_dataplan = get_post_meta($post->ID,'wpemails_cpve_cpt_plan');
+	?>
+	<input type="text" name="wpemails_cpve_plan_price" style="width: 100%;" value="<?php print $wpemails_dataplan[0]['wpemails_cpve_plan_price']; ?>">
+
+	<?php
+	}
+
+
 	//callback metabox postype planes
 	public static function wpmails_cpve_plan_callback($post){
 	$wpemails_dataplan = get_post_meta($post->ID,'wpemails_cpve_cpt_plan');
