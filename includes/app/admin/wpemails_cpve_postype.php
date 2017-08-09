@@ -8,7 +8,6 @@ class wpemails_cpve_postype{
 		add_action('add_meta_boxes',array(__CLASS__,'wpmails_cpve_plan_price'));
 		add_action('save_post',array(__CLASS__,'wpemails_cpve_savemetabox'));
 		add_action('save_post',array(__CLASS__,'wpemails_cpve_saveplan'));
-		add_action('save_post',array(__CLASS__,'wpemails_cpve_saveplanprice'));
 	}
 	public static function wpemails_cpve_postype_plan_fn(){
 	
