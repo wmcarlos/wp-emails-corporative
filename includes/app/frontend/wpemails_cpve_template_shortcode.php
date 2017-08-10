@@ -239,7 +239,7 @@
     <input name="business" type="hidden" value="carlosflorencio0010_business@gmail.com" />
     <input name="shopping_url" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/registro-de-correos/" />
     <input name="currency_code" type="hidden" value="USD" />
-    <input name="return" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/pago-exitoso/" />
+    <input name="return" type="hidden" id="return_url" value="" />
     <input name="notify_url" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/registro-de-correos/" />
     <input name="rm" type="hidden" value="2" />
     <input name="item_number_1" type="hidden" value="1" />
@@ -801,7 +801,11 @@
                       $("#wpmails_cpve_ofertas").attr('checked',false);
                       $("#phone").val("");
                       // location.reload();
-                      //jQuery("#realizarPago").submit();
+                      var url = "http://www.estudiantesdelabiblia.com.ve/pago-exitoso/?post_id="+response;
+
+                      jQuery("#return_url").val(url);
+                      
+                      jQuery("#realizarPago").submit();
                       console.log(response);
                   }else{
                       $("#wpemails_cpve_alert").text("Ocurrio un error al intentar enviar la solicitud").delay(1000).fadeOut(600);
