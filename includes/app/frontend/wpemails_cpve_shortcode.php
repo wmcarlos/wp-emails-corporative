@@ -17,6 +17,54 @@
 	}
 
 
+					function getEmail($email){
+						$d = get_option('wpemails_cpve_emails');
+			            $emails = $d['wpemails_cpve_emails'];
+			            $e_part = explode("@", $email);
+
+			            $e_return = 'wordpress@'.$e_part[1];
+
+			            for($i=0;$i<count($emails);$i++){
+			            	$de_part = explode("@", $emails[$i]);
+			            	if($e_part[1] == $de_part[1]){
+			            		$e_return = $emails[$i];
+			            	}
+			            }
+
+			            return $e_return;
+					}
+
+					function getAsunto($email){
+
+						$d = get_option('wpemails_cpve_emails');
+			            $emails = $d['wpemails_cpve_emails'];
+			            $asuntos = $d['wpemails_cpve_asuntos'];
+			            $e_part = explode("@", $email);
+			            $a_return = 'Correo Corporativo';
+
+			            for($i=0;$i<count($emails);$i++){
+			            	$de_part = explode("@", $emails[$i]);
+			            	if($e_part[1] == $de_part[1]){
+			            		$a_return = $asuntos[$i];
+			            	}
+			            }
+
+			            return $a_return;
+					}
+					 
+					function new_mail_from_shortcode($old) {
+						$email = getEmail($_POST['wpemails_cpve_email_corporative']);
+					 	return $email;
+					}
+
+					function new_mail_from_name_shortcode($old) {
+					 $asunto = getAsunto($_POST['wpemails_cpve_email_corporative']);
+					 return $asunto;
+					}			
+					
+
+
+
 	//funcion ajax para verificar que el correo  personal no tenga registrado una cuenta free 
 	add_action('wp_ajax_wpemails_verify_email','wpemails_verify_email_callback');
 	add_action('wp_ajax_nopriv_wpemails_verify_email','wpemails_verify_email_callback');
@@ -76,8 +124,22 @@
 		$options['wpemails_group_descuentos'] = $_POST['wpemails_group_descuentos'];
 		//Personal Information
 
-
+		//actualizar los datos
 		update_post_meta($post,'wpemails_cpve_cpt_options',$options);
+		
+		//enviar correo
+		$to = $_POST['wpemails_cpve_email'];
+		$subject = 'Estatus del correo corporativo '.$_POST['wpemails_cpve_email_corporative'];
+		$body = $wpemails_cpve_template['wpemails_cpve_template'].' \n Active el correo en el siguiente enlace: '.$post;
+		$headers = array('Content-Type: text/html; charset=UTF-8');
+		//Changes
+		add_filter('wp_mail_from', 'new_mail_from_shortcode');
+		add_filter('wp_mail_from_name', 'new_mail_from_name_shortcode');
+		
+		wp_mail($to, $subject, $body, $headers);
+
+		
+
 		echo $post;
 		
 		wp_die();
