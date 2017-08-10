@@ -773,21 +773,28 @@
 
             jQuery.post(ajaxurl, data, function(response) {
                   //response
-                  $("#wpemails_cpve_alert").text(""+response+"").delay(1000).fadeOut(600);
-                  $("#wpemails_cpve_email").val("");
-                  $("#wpemails_cpve_password").val("");
-                  $("#wpemails_cpve_fullname").val("");
-                  $("#wpemails_cpve_direction").val("");
-                  $("#wpemails_cpve_email_corporative").val("");
-                  $("#wpemails_cpve_fechanamiciento").val("");
-                  $("#wpemails_cpve_pais").val("");
-                  $("#wpemails_cpve_plan").val("");
-                  $("#wpemails_cpve_num_confirmacion").val("");
-                  $("#wpmails_cpve_terminos").attr('checked',false);
-                  $("#wpmails_cpve_mejoras").attr('checked',false);
-                  $("#wpmails_cpve_ofertas").attr('checked',false);
-                  $("#phone").val("");
-                  location.reload();
+                  if(parseInt(response)>0){
+                      $("#wpemails_cpve_alert").text("Solicitud Enviada Exitosamente").delay(1000).fadeOut(600);
+                      $("#wpemails_cpve_email").val("");
+                      $("#wpemails_cpve_password").val("");
+                      $("#wpemails_cpve_fullname").val("");
+                      $("#wpemails_cpve_direction").val("");
+                      $("#wpemails_cpve_email_corporative").val("");
+                      $("#wpemails_cpve_fechanamiciento").val("");
+                      $("#wpemails_cpve_pais").val("");
+                      $("#wpemails_cpve_plan").val("");
+                      $("#wpemails_cpve_num_confirmacion").val("");
+                      $("#wpmails_cpve_terminos").attr('checked',false);
+                      $("#wpmails_cpve_mejoras").attr('checked',false);
+                      $("#wpmails_cpve_ofertas").attr('checked',false);
+                      $("#phone").val("");
+                      // location.reload();
+                      console.log(response);
+                  }else{
+                      $("#wpemails_cpve_alert").text("Ocurrio un error al intentar enviar la solicitud").delay(1000).fadeOut(600);
+
+                  }
+                  
                   
             });
         }

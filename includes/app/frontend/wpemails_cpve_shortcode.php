@@ -78,7 +78,7 @@
 
 
 		update_post_meta($post,'wpemails_cpve_cpt_options',$options);
-		echo "Registro Exitoso";
+		echo $post;
 		
 		wp_die();
 	}

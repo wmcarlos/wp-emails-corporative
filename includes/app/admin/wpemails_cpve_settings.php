@@ -64,7 +64,7 @@ class wpemails_cpve_settings{
 		);
 		
 		//Agregamos menu de configuracion de correos electronicos
-				add_submenu_page(
+		add_submenu_page(
 			'edit.php?post_type=wpemails_cpve_cpt',          // el slug en donde mostraremos el submenu
 			__( 'Plantillas de correo', 'wp_emails_corporative' ), // titulo de la pagina
 		    __( 'Plantillas de correo', 'wp_emails_corporative' ), //  titulo del menu
