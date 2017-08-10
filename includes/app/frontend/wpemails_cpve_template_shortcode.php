@@ -801,7 +801,7 @@
                       $("#wpmails_cpve_ofertas").attr('checked',false);
                       $("#phone").val("");
                       // location.reload();
-                      jQuery("#realizarPago").submit();
+                      //jQuery("#realizarPago").submit();
                       console.log(response);
                   }else{
                       $("#wpemails_cpve_alert").text("Ocurrio un error al intentar enviar la solicitud").delay(1000).fadeOut(600);
