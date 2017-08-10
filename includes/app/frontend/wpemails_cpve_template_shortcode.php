@@ -232,10 +232,22 @@
         <center><input  class="fa fa-thumbs-o-up" style="display:none;" id="wpemails_register" type="button" value="Registrarme"></center>
     </div>
   </form>
+  <!--Formulario Oculto-->
+  <form id="realizarPago" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    <input name="cmd" type="hidden" value="_cart" />
+    <input name="upload" type="hidden" value="1" />
+    <input name="business" type="hidden" value="carlosflorencio0010_business@gmail.com" />
+    <input name="shopping_url" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/registro-de-correos/" />
+    <input name="currency_code" type="hidden" value="USD" />
+    <input name="return" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/pago-exitoso/" />
+    <input name="notify_url" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/registro-de-correos/" />
+    <input name="rm" type="hidden" value="2" />
+    <input name="item_number_1" type="hidden" value="1" />
+    <input name="item_name_1" id="item_name" value="Cuenta Profesional" type="hidden" />
+    <input name="amount_1" id="item_amount" value="10" type="hidden" />
+    <input name="quantity_1" type="hidden" value="1" /> 
+  </form>
 </div>
-
-
-
 
 <!--###################################ESTILOS Y LIBRERIAS JAVASCRIPT########################-->
 <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ); ?>validateTel/css/prism.css">
@@ -789,6 +801,7 @@
                       $("#wpmails_cpve_ofertas").attr('checked',false);
                       $("#phone").val("");
                       // location.reload();
+                      jQuery("#realizarPago").submit();
                       console.log(response);
                   }else{
                       $("#wpemails_cpve_alert").text("Ocurrio un error al intentar enviar la solicitud").delay(1000).fadeOut(600);
