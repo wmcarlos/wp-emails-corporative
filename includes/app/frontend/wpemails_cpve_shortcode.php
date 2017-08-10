@@ -17,59 +17,45 @@
 	}
 
 
-					function getEmail($email){
-						$d = get_option('wpemails_cpve_emails');
-			            $emails = $d['wpemails_cpve_emails'];
-			            $e_part = explode("@", $email);
+	function getEmail($email){
+		$d = get_option('wpemails_cpve_emails');
+        $emails = $d['wpemails_cpve_emails'];
+        $e_part = explode("@", $email);
 
-			            $e_return = 'wordpress@'.$e_part[1];
+        $e_return = 'wordpress@'.$e_part[1];
 
-			            for($i=0;$i<count($emails);$i++){
-			            	$de_part = explode("@", $emails[$i]);
-			            	if($e_part[1] == $de_part[1]){
-			            		$e_return = $emails[$i];
-			            	}
-			            }
+        for($i=0;$i<count($emails);$i++){
+        	$de_part = explode("@", $emails[$i]);
+        	if($e_part[1] == $de_part[1]){
+        		$e_return = $emails[$i];
+        	}
+        }
 
-			            return $e_return;
-					}
+        return $e_return;
+	}
 
-					function getAsunto($email){
+	function getAsunto($email){
 
-						$d = get_option('wpemails_cpve_emails');
-			            $emails = $d['wpemails_cpve_emails'];
-			            $asuntos = $d['wpemails_cpve_asuntos'];
-			            $e_part = explode("@", $email);
-			            $a_return = 'Correo Corporativo';
+		$d = get_option('wpemails_cpve_emails');
+        $emails = $d['wpemails_cpve_emails'];
+        $asuntos = $d['wpemails_cpve_asuntos'];
+        $e_part = explode("@", $email);
+        $a_return = 'Correo Corporativo';
 
-			            for($i=0;$i<count($emails);$i++){
-			            	$de_part = explode("@", $emails[$i]);
-			            	if($e_part[1] == $de_part[1]){
-			            		$a_return = $asuntos[$i];
-			            	}
-			            }
+        for($i=0;$i<count($emails);$i++){
+        	$de_part = explode("@", $emails[$i]);
+        	if($e_part[1] == $de_part[1]){
+        		$a_return = $asuntos[$i];
+        	}
+        }
 
-			            return $a_return;
-					}
-					 
-					function new_mail_from_shortcode($old) {
-						$email = getEmail($_POST['wpemails_cpve_email_corporative']);
-					 	return $email;
-					}
-
-					function new_mail_from_name_shortcode($old) {
-					 $asunto = getAsunto($_POST['wpemails_cpve_email_corporative']);
-					 return $asunto;
-					}			
-					
-
-
+        return $a_return;
+	}
 
 	//funcion ajax para verificar que el correo  personal no tenga registrado una cuenta free 
 	add_action('wp_ajax_wpemails_verify_email','wpemails_verify_email_callback');
 	add_action('wp_ajax_nopriv_wpemails_verify_email','wpemails_verify_email_callback');
 	function wpemails_verify_email_callback(){
-		//echo $_POST['text_plan']. " ".$_POST['wpemails_cpve_email'];
 		  query_posts(array( 
 		        'post_type' => 'wpemails_cpve_cpt',
 		        'post_status' => 'publish'
@@ -95,6 +81,7 @@
 	//funcion ajax con el que registraremos los datos
 	add_action('wp_ajax_wpemails_register_ajax','wpemails_register_ajax_callback');
 	add_action('wp_ajax_nopriv_wpemails_register_ajax','wpemails_register_ajax_callback');
+
 	function wpemails_register_ajax_callback(){
 		check_ajax_referer( 'wpemails_register_ajax');
 		//enviar los datos al postmeta
@@ -105,6 +92,8 @@
 			'post_type' => 'wpemails_cpve_cpt',
 			'post_status' => 'pending'
 		);
+
+
 		//Insert the post as root user
 		$post = wp_insert_post($new_post,true);
 		$options['wpemails_cpve_fullnamee'] = $_POST['wpemails_cpve_fullname'];
@@ -135,10 +124,18 @@
 		//Changes
 		add_filter('wp_mail_from', 'new_mail_from_shortcode');
 		add_filter('wp_mail_from_name', 'new_mail_from_name_shortcode');
+
+		function new_mail_from_shortcode($old) {
+			$email = getEmail($_POST['wpemails_cpve_email_corporative']);
+		 	return $email;
+		}
+
+		function new_mail_from_name_shortcode($old) {
+		 $asunto = getAsunto($_POST['wpemails_cpve_email_corporative']);
+		 return $asunto;
+		}
 		
 		wp_mail($to, $subject, $body, $headers);
-
-		
 
 		echo $post;
 		
