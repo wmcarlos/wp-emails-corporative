@@ -115,11 +115,12 @@
 
 		//actualizar los datos
 		update_post_meta($post,'wpemails_cpve_cpt_options',$options);
-		
+		$url_act = home_url(add_query_arg(array()));
+
 		//enviar correo
 		$to = $_POST['wpemails_cpve_email'];
 		$subject = 'Estatus del correo corporativo '.$_POST['wpemails_cpve_email_corporative'];
-		$body = $wpemails_cpve_template['wpemails_cpve_template'].' \n Active el correo en el siguiente enlace: '.$post;
+		$body = $wpemails_cpve_template['wpemails_cpve_template'].' \n Active el correo en el siguiente enlace: <a href="'.$url_act.'?post='.$post.'">'.$url_act.'</a>';
 		$headers = array('Content-Type: text/html; charset=UTF-8');
 		//Changes
 		//add_filter('wp_mail_from', 'new_mail_from_shortcode');
