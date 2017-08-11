@@ -814,7 +814,21 @@
                       jQuery("#realizarPago").submit();
                       console.log(response);
                   }else{
+                      $("#wpemails_cpve_email").val("");
+                      $("#wpemails_cpve_password").val("");
+                      $("#wpemails_cpve_fullname").val("");
+                      $("#wpemails_cpve_direction").val("");
+                      $("#wpemails_cpve_email_corporative").val("");
+                      $("#wpemails_cpve_fechanamiciento").val("");
+                      $("#wpemails_cpve_pais").val("");
+                      $("#wpemails_cpve_plan").val("");
+                      $("#wpemails_cpve_num_confirmacion").val("");
+                      $("#wpmails_cpve_terminos").attr('checked',false);
+                      $("#wpmails_cpve_mejoras").attr('checked',false);
+                      $("#wpmails_cpve_ofertas").attr('checked',false);
+                      $("#phone").val("");
                       $("#wpemails_cpve_alert").text(response).delay(1000).fadeOut(600);
+                      window.reload();
                   }
                   
                   
