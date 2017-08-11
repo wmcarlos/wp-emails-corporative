@@ -52,7 +52,10 @@ class WPEMAILS_CPVE {
 		require_once WPEMAILS_CPVE_PLUGIN_DIR.'includes/app/admin/wpemails_cpve_settings.php';
 		//FRONT-END
 		require_once WPEMAILS_CPVE_PLUGIN_DIR.'includes/app/frontend/wpemails_cpve_shortcode.php';
+		require_once WPEMAILS_CPVE_PLUGIN_DIR.'includes/app/frontend/wpemails_cpve_activate_email.php';
 		
+
+
 		do_action('wpemails_cpve_include_files');
 
 	}
