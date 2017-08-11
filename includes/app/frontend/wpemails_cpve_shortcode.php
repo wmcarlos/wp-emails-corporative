@@ -92,6 +92,7 @@
 			'post_type' => 'wpemails_cpve_cpt',
 			'post_status' => 'pending'
 		);
+		$data_messaje = '';
 
 
 		//Insert the post as root user
@@ -112,33 +113,31 @@
 		$options['wpemails_group_empleo'] = $_POST['wpemails_group_empleo'];
 		$options['wpemails_group_descuentos'] = $_POST['wpemails_group_descuentos'];
 		//Personal Information
-
 		//actualizar los datos
 		update_post_meta($post,'wpemails_cpve_cpt_options',$options);
-		$url_act = home_url();
 
-		//enviar correo
-		$to = $_POST['wpemails_cpve_email'];
-		$subject = 'Estatus del correo corporativo '.$_POST['wpemails_cpve_email_corporative'];
-		$body = $wpemails_cpve_template['wpemails_cpve_template'].' \n Active el correo en el siguiente enlace: <a href="'.$url_act.'/active-email?post='.$post.'">'.$url_act.'/active-email</a>';
-		$headers = array('Content-Type: text/html; charset=UTF-8');
-		//Changes
-		//add_filter('wp_mail_from', 'new_mail_from_shortcode');
-		//add_filter('wp_mail_from_name', 'new_mail_from_name_shortcode');
-
-		/*function new_mail_from_shortcode($old) {
-			$email = getEmail($_POST['wpemails_cpve_email_corporative']);
-		 	return $email;
+		if($_POST['wpemails_cpve_plan_price']=='0'){
+			$url_act = home_url();
+			//obtener los datos del template
+			$wpemails_cpve_template = get_option('wpemails_cpve_template');
+			//vamos a transformar nuestro template email
+			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{fullname}}', $_POST['wpemails_cpve_fullname'], $wpemails_cpve_template['wpemails_cpve_template']);
+			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{email}}', $_POST['wpemails_cpve_email_send'], $wpemails_cpve_template['wpemails_cpve_template']);
+			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{email_corporative}}', $_POST['wpemails_cpve_email_corporative'], $wpemails_cpve_template['wpemails_cpve_template']);
+			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{plan}}', $_POST['wpemails_cpve_plan'], $wpemails_cpve_template['wpemails_cpve_template']);
+			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{city}}', $_POST['wpemails_cpve_full_direction'], $wpemails_cpve_template['wpemails_cpve_template']);
+			//closed mail template
+			//enviar correo
+			$to = $_POST['wpemails_cpve_email'];
+			$subject = 'Estatus del correo corporativo '.$_POST['wpemails_cpve_email_corporative'];
+			$body = $wpemails_cpve_template['wpemails_cpve_template'].' \n Active el correo en el siguiente enlace: <a href="'.$url_act.'/active-email?post='.$post.'">'.$url_act.'/active-email</a>';
+			$headers = array('Content-Type: text/html; charset=UTF-8');
+			wp_mail($to, $subject, $body, $headers);
+			$data_messaje = 'SE HA ENVIADO  UN MENSAJE A SU CORREO ELECTRONICO';
+		}else{
+			$data_messaje = $post;
 		}
-
-		function new_mail_from_name_shortcode($old) {
-		 $asunto = getAsunto($_POST['wpemails_cpve_email_corporative']);
-		 return $asunto;
-		}*/
-		
-		wp_mail($to, $subject, $body, $headers);
-
-		echo $post;
+		echo $data_messaje;
 		
 		wp_die();
 	}

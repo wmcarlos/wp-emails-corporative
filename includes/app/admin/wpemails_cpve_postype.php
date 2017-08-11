@@ -76,6 +76,7 @@ class wpemails_cpve_postype{
 	}
 	//FUNCION PARA GUARDAR LOS DATOS DEL PLAN
 	public static function wpemails_cpve_saveplan($post){
+		
 		$dataplan['wpemails_cpve_email_check'] =  isset($_POST['wpemails_cpve_email_check']) ? $_POST['wpemails_cpve_email_check'] : '';
 		$dataplan['wpemails_cpve_fullname_check'] =  isset($_POST['wpemails_cpve_fullname_check']) ? $_POST['wpemails_cpve_fullname_check'] : '';
 		$dataplan['wpemails_cpve_fechanamiciento_check'] =  isset($_POST['wpemails_cpve_fechanamiciento_check']) ? $_POST['wpemails_cpve_fechanamiciento_check'] : '';

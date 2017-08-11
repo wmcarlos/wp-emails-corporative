@@ -163,7 +163,7 @@
         <select name="wpemails_cpve_plan" id="wpemails_cpve_plan" class="validate" style="height:45px !important;">
           <option value="">Seleccionar plan</option>
         <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-            <option value='<?php echo strip_tags(get_the_content()); ?>'><?php echo strip_tags(the_title()).' - '.strip_tags(get_the_content());?></option>
+            <option  value='<?php echo strip_tags(get_the_content()); ?>'><?php echo strip_tags(the_title()).' - '.strip_tags(get_the_content());?></option>
         <?php endwhile; ?>
         </select>
       </div>
@@ -195,6 +195,8 @@
               <input type="hidden" class="wpmails_cpve_ofertas" value="<?php echo $wpemails_dataplan[0]['wpemails_cpve_recibir_ofertas_check']; ?>">
 
               <input type="hidden" class="wpmails_cpve_mejoras" value="<?php echo $wpemails_dataplan[0]['wpemails_cpve_recibir_mejoras_check']; ?>">
+
+              <input type="hidden" class="wpemails_cpve_plan_price" value="<?php echo $wpemails_dataplan[0]['wpemails_cpve_plan_price']; ?>">
 
            </div>
     
@@ -297,13 +299,15 @@
 <script type="text/javascript">
   var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
   var ajaxurl2 = "<?php echo admin_url('admin-ajax.php'); ?>";
-  
   var wpemails_pattern_email = /^[a-z]+[a-z-0-9_]+@[a-z]+\.[a-z]{2,4}/
   var wpemails_pattern = /^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$/
   var wpemails_pattern_letters  = /^[a-zA-Z-0-9]+$/
   var wpmails_pattern_password = /^(?=.*[a-z])(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*?&\-])([a-z\d$@$!%*?&\-]|[^ ]){12,18}$/;
   var wpemails_pattern_vacio =  /^[^]+$/
   var wpemails_pattern_fecha =  /^([0][1-9]|[12][0-9]|3[01])(\/|-)([0][1-9]|[1][0-2])\2(\d{4})$/
+  //pp prices
+  var wpemails_cpve_plan_price  = '';
+
 
   //response callback
   var correctCaptcha = function(response) {
@@ -584,6 +588,7 @@
            });
 
           /*escogerlas reglas de campos*/
+          wpemails_cpve_plan_price  = $("."+class_rule).find(".wpemails_cpve_plan_price").val();
           $("."+class_rule).find('input[type="hidden"]').each(function(){
               name_element = $(this).attr("class");
             //  alert(name_element);
@@ -771,6 +776,7 @@
               'wpemails_cpve_fechanamiciento':$("#days").val()+"/"+$("#months").val()+"/"+$("#years").val(),
               'wpemails_cpve_pais':wpemails_cpve_paistext,
               'wpemails_cpve_phone':wpemails_cpve_phone,
+              'wpemails_cpve_plan_price':wpemails_cpve_plan_price.
               'wpemails_cpve_plan':$("#wpemails_cpve_plan").val(),
               'wpemails_cpve_num_confirmacion':$("#wpemails_cpve_num_confirmacion").val(),
               'txtacrocorporative':$("#txtacrocorporative").val(),
@@ -785,8 +791,8 @@
 
             jQuery.post(ajaxurl, data, function(response) {
                   //response
-                  if(parseInt(response)>0){
-                      $("#wpemails_cpve_alert").text("Solicitud Enviada Exitosamente").delay(1000).fadeOut(600);
+                  if(parseInt(response)>=0){
+                      //$("#wpemails_cpve_alert").text("Solicitud Enviada Exitosamente").delay(1000).fadeOut(600);
                       $("#wpemails_cpve_email").val("");
                       $("#wpemails_cpve_password").val("");
                       $("#wpemails_cpve_fullname").val("");
@@ -808,8 +814,7 @@
                       jQuery("#realizarPago").submit();
                       console.log(response);
                   }else{
-                      $("#wpemails_cpve_alert").text("Ocurrio un error al intentar enviar la solicitud").delay(1000).fadeOut(600);
-
+                      $("#wpemails_cpve_alert").text(response).delay(1000).fadeOut(600);
                   }
                   
                   
