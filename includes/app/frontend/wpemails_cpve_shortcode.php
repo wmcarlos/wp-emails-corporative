@@ -122,10 +122,10 @@
 		$body = $wpemails_cpve_template['wpemails_cpve_template'].' \n Active el correo en el siguiente enlace: '.$post;
 		$headers = array('Content-Type: text/html; charset=UTF-8');
 		//Changes
-		add_filter('wp_mail_from', 'new_mail_from_shortcode');
-		add_filter('wp_mail_from_name', 'new_mail_from_name_shortcode');
+		//add_filter('wp_mail_from', 'new_mail_from_shortcode');
+		//add_filter('wp_mail_from_name', 'new_mail_from_name_shortcode');
 
-		function new_mail_from_shortcode($old) {
+		/*function new_mail_from_shortcode($old) {
 			$email = getEmail($_POST['wpemails_cpve_email_corporative']);
 		 	return $email;
 		}
@@ -133,7 +133,7 @@
 		function new_mail_from_name_shortcode($old) {
 		 $asunto = getAsunto($_POST['wpemails_cpve_email_corporative']);
 		 return $asunto;
-		}
+		}*/
 		
 		wp_mail($to, $subject, $body, $headers);
 
