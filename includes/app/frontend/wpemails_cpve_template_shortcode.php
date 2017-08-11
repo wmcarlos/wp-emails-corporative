@@ -776,7 +776,7 @@
               'wpemails_cpve_fechanamiciento':$("#days").val()+"/"+$("#months").val()+"/"+$("#years").val(),
               'wpemails_cpve_pais':wpemails_cpve_paistext,
               'wpemails_cpve_phone':wpemails_cpve_phone,
-              'wpemails_cpve_plan_price':wpemails_cpve_plan_price.
+              'wpemails_cpve_plan_price':wpemails_cpve_plan_price,
               'wpemails_cpve_plan':$("#wpemails_cpve_plan").val(),
               'wpemails_cpve_num_confirmacion':$("#wpemails_cpve_num_confirmacion").val(),
               'txtacrocorporative':$("#txtacrocorporative").val(),
