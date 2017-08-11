@@ -134,6 +134,7 @@
 			$headers = array('Content-Type: text/html; charset=UTF-8');
 			wp_mail($to, $subject, $body, $headers);
 			$data_messaje = 'SE HA ENVIADO  UN MENSAJE A SU CORREO ELECTRONICO';
+			
 		}else{
 			$data_messaje = $post;
 		}

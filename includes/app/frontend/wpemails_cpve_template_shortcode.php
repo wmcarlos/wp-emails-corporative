@@ -807,7 +807,7 @@
                       $("#wpmails_cpve_ofertas").attr('checked',false);
                       $("#phone").val("");
                       // location.reload();
-                      var url = "http://www.estudiantesdelabiblia.com.ve/pago-exitoso/?post_id="+response;
+                      var url = "http://www.estudiantesdelabiblia.com.ve/pago-exitoso/?post_ppaypal="+response;
 
                       jQuery("#return_url").val(url);
                       
