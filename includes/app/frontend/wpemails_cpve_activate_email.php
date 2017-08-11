@@ -1,7 +1,8 @@
 <?php
 	
-	add_action( 'wp_loaded', 'loaded_front_end_function');
-	function loaded_front_end_function() {
+	add_action( 'wp_loaded', 'loaded_front_end_function2');
+
+	function loaded_front_end_function2() {
 	    if ( !is_admin() ) { 
 	      if(isset($_GET['post'])){
 	      	wpemails_cpve_function_register_email();
