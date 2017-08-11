@@ -4,13 +4,13 @@
 	function loaded_front_end_function() {
 	    if ( !is_admin() ) { 
 	      if(isset($_GET['post'])){
-	      	wpemails_cpve_function_register_email();
+	      	wpemails_cpve_function_register_email_front();
 	      }
 
 	   }
 	
 	}
-	function wpemails_cpve_function_register_email(){
+	function wpemails_cpve_function_register_email_front(){
 		$get_settings = new wpemails_cpve_settings();
 		$wpemailscpve_front_options = $get_settings->wpemails_cpve_checkoptions();
 		$wpemails_cpve_front_estatuspost = get_post_status($_GET['post']);
