@@ -1039,14 +1039,35 @@
 
             var data = {
               'action': 'wpemails_validate_ajax',
-              _ajax_nonce : "<?php echo $nonce; ?>",
+              _ajax_nonce : "<?php echo $nonce2; ?>",
               'wpemail_full_email':email+domain
            };
 
            jQuery.post(ajaxurl, data, function(response) {
-              alert(response);
+                if(response == 1){
+                  alert("Este correo ya se Encuentra Registrado!!");
+                  $("#wpemails_cpve_email_corporative").val("");
+                }
            });
             
+        });
+
+        jQuery("#wpemails_cpve_email_corporative").blur(function(){
+              var email = $(this).val();
+              var domain = $("#txtacrocorporative").val();
+
+              var data = {
+                'action': 'wpemails_validate_ajax',
+                _ajax_nonce : "<?php echo $nonce2; ?>",
+                'wpemail_full_email':email+domain
+             };
+
+             jQuery.post(ajaxurl, data, function(response) {
+                  if(response == 1){
+                    alert("Este correo ya se Encuentra Registrado!!");
+                    $("#wpemails_cpve_email_corporative").val("");
+                  }
+             });
         });
 
 });  

@@ -147,13 +147,15 @@
 	function wpemails_validate_ajax_callback(){
 		$wpemailscpve_options = get_option('wpemails_cpve_options',true);
 
-		$cpmm = new cPanelMailManager($wpemailscpve_options['user'], $wpemailscpve_options['pass'], $wpemailscpve_options['host']);
-		
+		$cpmm = new cPanelMailManager($wpemailscpve_options['txtuser'], $wpemailscpve_options['txtpassword'], $wpemailscpve_options['txtdomain']);
+
 		$email = $_POST["wpemail_full_email"];
 
-		if($comm->emailExists($email,true)){
-			print "Existe";
+		if($cpmm->emailExists($email,true)){
+			print 1;
 		}else{
-			print "No Existe";
+			print 0;
 		}
+
+		wp_die();
 	}
