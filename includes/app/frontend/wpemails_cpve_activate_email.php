@@ -39,7 +39,7 @@
 			$url_act = home_url();
 			//obtener los datos del template
 			$wpemails_cpve_template = get_option('wpemails_cpve_template');
-			$wpemails_cpve_front_data = get_post_meta($_GET['post'],'wpemails_cpve_cpt_options');
+			$wpemails_cpve_front_data = get_post_meta($_GET['post_ppaypal'],'wpemails_cpve_cpt_options');
 			//vamos a transformar nuestro template email
 			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{fullname}}', $wpemails_cpve_front_data['wpemails_cpve_fullname'], $wpemails_cpve_template['wpemails_cpve_template']);
 			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{email}}', $wpemails_cpve_front_data['wpemails_cpve_email_send'], $wpemails_cpve_template['wpemails_cpve_template']);
