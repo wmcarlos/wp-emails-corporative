@@ -115,13 +115,11 @@
 
       <strong style="color:#707070;" class="title-strong">Ciudad:</strong><span class=" wpemails_helps" titlehelp="Ingrese la Ciudad de su residencia.">(?)</span>
       <div class="row">
-          <!--<textarea placeholder="Direccion"  class="validate" name="wpemails_cpve_direction"  id="wpemails_cpve_direction" style="height:100px;"></textarea>-->
           <input type="text" style="height:45px !important;" placeholder="Ingrese ciudad de residencia" class="validate" name="wpemails_cpve_direction"  id="wpemails_cpve_direction">
       </div>
       <strong style="color:#707070;" class="title-strong">Correo Corporativo:</strong><span class=" wpemails_helps" titlehelp="Si elegiste el Plan Free, Ingresa tu nombre y apellido paterno, debe ser en el siguiente formato: Ej. jose.caceres@club-profesionales.com">(?)</span>
       <div class="row">
         <input type="text" class="validate" style="height:45px !important;" name="wpemails_cpve_email_corporative" id="wpemails_cpve_email_corporative" placeholder="Ingresa la cuenta de correo corporativo" value="">
-        <!--<input type="text" readonly="readonly" name="txtacrocorporative" id="txtacrocorporative" value="<?php?>">-->
         <select name="txtacrocorporative" id="txtacrocorporative" style="height:45px !important;">
           <?php for($i=0; $i<count($wpemails_cpve_dataoptions['txtacrocorporative']); $i++){ ?>
               <option value="<?php echo $wpemails_cpve_dataoptions['txtacrocorporative'][$i]; ?>"><?php echo $wpemails_cpve_dataoptions['txtacrocorporative'][$i];  ?></option>
@@ -290,6 +288,7 @@
   </style>
   <?php 
     $nonce = wp_create_nonce('wpemails_register_ajax');
+    $nonce2 = wp_create_nonce('wpemails_validate_ajax');
   ?>
 
 
@@ -1032,6 +1031,22 @@
               }else{
                 $( "#wpmails_cpve_mejoras" ).prop( "checked", false );
               }
+        });
+
+        jQuery("#txtacrocorporative").change(function(){
+            var domain = $(this).val();
+            var email = $("#wpemails_cpve_email_corporative").val();
+
+            var data = {
+              'action': 'wpemails_validate_ajax',
+              _ajax_nonce : "<?php echo $nonce; ?>",
+              'wpemail_full_email':email+domain
+           };
+
+           jQuery.post(ajaxurl, data, function(response) {
+              alert(response);
+           });
+            
         });
 
 });  

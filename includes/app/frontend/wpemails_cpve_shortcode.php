@@ -63,8 +63,6 @@
 		  $exist = 'no';
 		   while (have_posts()) : the_post(); 
 		   		$data_temp  = get_post_meta(get_the_id(),'wpemails_cpve_cpt_options');
-		   		//echo $data_temp[0]['wpmails_cpve_text_plan'];
-		      	//echo get_the_id();
 		      	if($data_temp[0]['wpemails_cpve_email_send']==$_POST['wpemails_cpve_email']){
 		      		if(strpos($data_temp[0]['wpmails_cpve_text_plan'],'Free')>0 || (strpos($data_temp[0]['wpmails_cpve_text_plan'],'FREE')>0) ){
 						if($_POST['text_plan'] == $data_temp[0]['wpmails_cpve_text_plan']){
@@ -80,6 +78,9 @@
 
 	//funcion ajax con el que registraremos los datos
 	add_action('wp_ajax_wpemails_register_ajax','wpemails_register_ajax_callback');
+
+	add_action('wp_ajax_wpemails_validate_ajax','wpemails_validate_ajax_callback');
+
 	add_action('wp_ajax_nopriv_wpemails_register_ajax','wpemails_register_ajax_callback');
 
 	function wpemails_register_ajax_callback(){
@@ -141,4 +142,18 @@
 		echo $data_messaje;
 		
 		wp_die();
+	}
+
+	function wpemails_validate_ajax_callback(){
+		$wpemailscpve_options = get_option('wpemails_cpve_options',true);
+
+		$cpmm = new cPanelMailManager($wpemailscpve_options['user'], $wpemailscpve_options['pass'], $wpemailscpve_options['host']);
+		
+		$email = $_POST["wpemail_full_email"];
+
+		if($comm->emailExists($email,true)){
+			print "Existe";
+		}else{
+			print "No Existe";
+		}
 	}

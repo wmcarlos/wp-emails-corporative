@@ -47,7 +47,7 @@
 			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{plan}}', $wpemails_cpve_front_data['wpemails_cpve_plan'], $wpemails_cpve_template['wpemails_cpve_template']);
 			$wpemails_cpve_template['wpemails_cpve_template'] = str_replace('{{city}}', $wpemails_cpve_front_data['wpemails_cpve_full_direction'], $wpemails_cpve_template['wpemails_cpve_template']);
 			//enviar correo
-			$to = $wpemails_cpve_front_data[0]['wpemails_cpve_email_send'];																																																																																																																																																																																																																																																																																																																																										
+			$to = $wpemails_cpve_front_data[0]['wpemails_cpve_email_send'];
 			$subject = 'Estatus del correo corporativo '.$wpemails_cpve_front_data[0]['wpemails_cpve_email_corporative'];
 			$body = $wpemails_cpve_template['wpemails_cpve_template'].' \n Active el correo en el siguiente enlace: <a href="'.$url_act.'/active-email?post='.$_GET['post_ppaypal'].'">'.$url_act.'/active-email</a>';
 			$headers = array('Content-Type: text/html; charset=UTF-8');
