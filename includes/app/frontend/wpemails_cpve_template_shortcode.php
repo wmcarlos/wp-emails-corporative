@@ -126,6 +126,7 @@
           <?php } ?>
         </select>
       </div>
+      <center><b><div style="display:none;" class="wpemails_verify_email_corporative">VERIFICANDO CORREO....</div></b></center>
 
        <div class="row wpemails_help_password" style="display:none; padding:0px !important; padding-top:20px !important;width:100%;max-width:270px;">
           <br>
@@ -1042,11 +1043,14 @@
               _ajax_nonce : "<?php echo $nonce2; ?>",
               'wpemail_full_email':email+domain
            };
-
+           $(".wpemails_verify_email_corporative").val('Verificando Email....').fadeIn(500);
            jQuery.post(ajaxurl, data, function(response) {
                 if(response == 1){
-                  alert("Este correo ya se Encuentra Registrado!!");
+                 // alert("Este correo ya se Encuentra Registrado!!");
+                 $(".wpemails_verify_email_corporative").val('Este correo ya se Encuentra Registrado').css({'color':'red !important;'});
                   $("#wpemails_cpve_email_corporative").val("");
+                }else{
+                 $(".wpemails_verify_email_corporative").val('Correo Aceptado').delay(3000).fadeOut(500);                
                 }
            });
             
@@ -1061,13 +1065,17 @@
                 _ajax_nonce : "<?php echo $nonce2; ?>",
                 'wpemail_full_email':email+domain
              };
-
-             jQuery.post(ajaxurl, data, function(response) {
-                  if(response == 1){
-                    alert("Este correo ya se Encuentra Registrado!!");
-                    $("#wpemails_cpve_email_corporative").val("");
-                  }
-             });
+              $(".wpemails_verify_email_corporative").val('Verificando Email....').fadeIn(500);
+           jQuery.post(ajaxurl, data, function(response) {
+                if(response == 1){
+                 // alert("Este correo ya se Encuentra Registrado!!");
+                 $(".wpemails_verify_email_corporative").val('Este correo ya se Encuentra Registrado').css({'color':'red !important;'});
+                  $("#wpemails_cpve_email_corporative").val("");
+                }else{
+                 $(".wpemails_verify_email_corporative").val('Correo Aceptado').delay(3000).fadeOut(500);                
+                }
+           });
+            
         });
 
 });  
