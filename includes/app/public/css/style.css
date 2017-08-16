@@ -295,3 +295,15 @@ position: relative;
     height: 45px !important;
   }
 }
+
+div.row table tr td{
+  padding:0px;
+  text-align: left;
+  margin:0px;
+  font-size:16px;
+}
+
+div.row table tr td input[type='checkbox']{
+  width: 18px;
+  height: 18px;
+}

@@ -32,16 +32,14 @@
         ?>
 
         <div class="row">
-          <table >
+          <table>
             <?php for($i=0; $i < count($group_ids); $i++) { 
                 if($group_types[$i] == "Ofertas de Trabajo"){
             ?>
               <tr>
                 <td>
-                  <strong style="font-size:30px;"><?php echo $group_names[$i]; ?></strong>
-                </td>
-                <td>
-                  <input type="checkbox" class="wpemails_group_empelo" name="wpemails_group_empleo[]" value="<?php echo $group_ids[$i]; ?>"> 
+                <input type="checkbox" class="wpemails_group_empelo" name="wpemails_group_empleo[]" value="<?php echo $group_ids[$i]; ?>"> 
+                  <strong><?php echo $group_names[$i]; ?></strong>
                 </td>
               </tr>
             <?php 
@@ -63,10 +61,8 @@
             ?>
               <tr>
                 <td>
-                  <strong style="font-size:30px;"><?php echo $group_names[$i]; ?></strong>
-                </td>
-                <td>
                   <input type="checkbox" class="wpemails_group_descuentos" name="wpemails_group_descuentos[]" value="<?php echo $group_ids[$i]; ?>"> 
+                  <strong><?php echo $group_names[$i]; ?></strong>
                 </td>
               </tr>
             <?php 
@@ -201,10 +197,10 @@
     
       <?php endwhile; ?>
 
-      <strong style="color:#707070;" class="title-strong">Numero de confirmacion Paypal:</strong><span class=" wpemails_helps" titlehelp="Si elegiste un Plan de Pago, ingrese aquí el Código de Confirmación de pago.">(?)</span>
+     <!--<strong style="color:#707070;" class="title-strong">Numero de confirmacion Paypal:</strong><span class=" wpemails_helps" titlehelp="Si elegiste un Plan de Pago, ingrese aquí el Código de Confirmación de pago.">(?)</span>
       <div class="row">
         <input type="text" style="height:45px !important;" name="wpemails_cpve_num_confirmacion" id="wpemails_cpve_num_confirmacion" placeholder="Ingrese el numero de confirmacion del deposito paypal" value="">
-      </div>
+      </div>-->
      
       <!--terminos y condiciones,ofertas de subscripcion-->
       <div class="row">
@@ -1065,6 +1061,7 @@
                 _ajax_nonce : "<?php echo $nonce2; ?>",
                 'wpemail_full_email':email+domain
              };
+             
               $(".wpemails_verify_email_corporative").val('Verificando Email....').fadeIn(500);
            jQuery.post(ajaxurl, data, function(response) {
                 if(response == 1){
