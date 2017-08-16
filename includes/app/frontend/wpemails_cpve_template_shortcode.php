@@ -52,7 +52,7 @@
 </div>
 
   <!--Modal Discount-->
-  <div id="dialog-discount" style="display: none;" title="Recibir los mejores descuentos y promociones">
+  <div id="dialog-discount" style="display: none;" title="Descuentos y Promociones">
        <p>
         <div class="row">
           <table >
@@ -360,8 +360,8 @@
                 $( this ).dialog( "close" );
               }
             },
-            width : 500,
-            height : 500,
+            width : 300,
+            height : 300,
             scrollable : true,
             show: {
               effect: "blind",
@@ -390,8 +390,8 @@
               $( this ).dialog( "close" );
             }
           },
-          width : 500,
-          height : 500,
+          width : 300,
+          height : 300,
           scrollable : true,
           show: {
             effect: "blind",
