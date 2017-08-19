@@ -1,6 +1,5 @@
 <?php
   $wpemails_cpve_dataoptions = get_option('wpemails_cpve_options');
-
 ?>
 
 <div class="card-form">
@@ -234,10 +233,10 @@
     <input name="cmd" type="hidden" value="_cart" />
     <input name="upload" type="hidden" value="1" />
     <input name="business" type="hidden" value="carlosflorencio0010_business@gmail.com" />
-    <input name="shopping_url" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/registro-de-correos/" />
+    <input name="shopping_url" type="hidden" value="<?php echo get_home_url(); ?>/registro-de-correos/" />
     <input name="currency_code" type="hidden" value="USD" />
     <input name="return" type="hidden" id="return_url" value="" />
-    <input name="notify_url" type="hidden" value="http://www.estudiantesdelabiblia.com.ve/registro-de-correos/" />
+    <input name="notify_url" type="hidden" value="<?php echo get_home_url(); ?>/registro-de-correos/" />
     <input name="rm" type="hidden" value="2" />
     <input name="item_number_1" type="hidden" value="1" />
     <input name="item_name_1" id="item_name" value="Cuenta Profesional" type="hidden" />
@@ -803,7 +802,7 @@
                       $("#wpmails_cpve_ofertas").attr('checked',false);
                       $("#phone").val("");
                       // location.reload();
-                      var url = "http://www.estudiantesdelabiblia.com.ve/active-email/?post_ppaypal="+response;
+                      var url = "<?php echo get_home_url(); ?>/active-email/?post_ppaypal="+response;
 
                       jQuery("#return_url").val(url);
                       

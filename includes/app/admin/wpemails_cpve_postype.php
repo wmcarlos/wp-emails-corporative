@@ -72,6 +72,38 @@ class wpemails_cpve_postype{
 		);
 		register_post_type('wpemails_cpve_planes',$args2);
 
+		//templates correos
+		//postype para planes
+		$labels3 = array(
+			'name' => 'Plantilla de correos',
+			'singular_name' => 'Plantilla de Correos',
+			'add_new' => 'Agregar Plantilla de Correos',
+			'all_items'=> 'Listar Plantilas',
+			'add_new_item'=> 'Agregar Nueva Plantilla',
+			'edit_item' => 'Editar Plantilla',
+			'view_item ' => 'Visualizar Plantilla',
+			'search_item' => 'Buscar Plantilla',
+			'not_found' => 'No Existe la plantilla',
+			'not_found_in_trash ' => 'No Enlace found in trash',
+			'parent_item_colon' => 'Parent Item'
+		);
+		$args3 = array(
+			'labels'=> $labels3,
+			'public'=> true,
+			'has_archive'=>true,
+			'publicly_queryable'=>true,
+			'query_var'=>true,
+			'rewrite'=>true,
+			'capability_type'=>'post',
+			'menu_icon' => 'dashicons-list-view',
+			'hierarchical' => false,
+			'supports'=> array('title','editor'),
+			'taxonomies' => array(''),
+			'menu_position'=>5,
+			'exclude_from_search'=>true
+		);
+		register_post_type('wpemails_cpve_correo',$args3);
+
 
 	}
 	//FUNCION PARA GUARDAR LOS DATOS DEL PLAN
