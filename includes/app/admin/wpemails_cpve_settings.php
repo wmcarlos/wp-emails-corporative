@@ -117,6 +117,10 @@ class wpemails_cpve_settings{
 		$wpemails_cpve_options['txtuser'] = $_POST['txtuser'];
 		$wpemails_cpve_options['txtpassword'] = $_POST['txtpassword'];
 		$wpemails_cpve_options['txtacrocorporative'] = $_POST['txtacrocorporative'];
+		$wpemails_cpve_options['paypal_bussines_email'] = $_POST['paypal_bussines_email'];
+		
+		$wpemails_cpve_options['paypal_redirect_url'] = $_POST['paypal_redirect_url'];
+		
 		//guardamos los datos
 		update_option('wpemails_cpve_options',$wpemails_cpve_options);
 		//derireccionamos a la pagina nuevamente
