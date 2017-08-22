@@ -233,7 +233,7 @@
     <input name="cmd" type="hidden" value="_cart" />
     <input name="upload" type="hidden" value="1" />
     <input name="business" type="hidden" id="business" value="<?php print $wpemails_cpve_dataoptions['paypal_bussines_email']; ?>" />
-    <input name="shopping_url" type="hidden" value="<?php echo get_home_url(); ?>/<?php print $wpemails_cpve_dataoptions['paypal_bussines_email']; ?>/" />
+    <input name="shopping_url" type="hidden" value="<?php echo get_home_url(); ?>/<?php print $wpemails_cpve_dataoptions['paypal_redirect_url']; ?>/" />
     <input name="currency_code" type="hidden" value="USD" />
     <input name="return" type="hidden" id="return_url" value="" />
     <input name="notify_url" type="hidden" value="<?php echo get_home_url(); ?>/registro-de-correos/" />
