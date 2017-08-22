@@ -780,9 +780,10 @@
               'wpemails_group_empleo':converArrayInString('wpemails_group_empleo[]'),
               'wpemails_group_descuentos':converArrayInString('wpemails_group_descuentos[]'),
               'text_plan':text_plan
-
-
            };
+
+           $("#item_name").val($("#wpemails_cpve_plan option:selected").text());
+           $("#item_amount").val(wpemails_cpve_plan_price);
 
             jQuery.post(ajaxurl, data, function(response) {
                   //response
