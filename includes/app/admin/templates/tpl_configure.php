@@ -14,8 +14,6 @@
   $cpmm = new cPanelMailManager($wpemailscpve_options['user'], $wpemailscpve_options['pass'], $wpemailscpve_options['host']);
   $domains = $cpmm->getDomains();
   $cad = "";
-
-  print_r($wpemailscpve_options);
 ?>
 <center>
 <div class="card-form" style="margin-left:20px;">
@@ -32,11 +30,11 @@
       </div>
       <br />
       <strong>Configuracion Pasarela de Pago</strong>
-      <div class="row add_paypal_config">
+      <div class="row">
         <input type="text" name="paypal_bussines_email" value="<?php echo $wpemailscpve_options['paypal_bussines_email'];  ?>" placeholder="Correo Cuenta de Negocios">
       </div>
       <div class="row">
-          <input type="text" name="paypal_redirect_url" placeholder="Pagina de Redireccion">
+          <input type="text" value="<?php echo $wpemailscpve_options['paypal_redirect_url'];  ?>" name="paypal_redirect_url" placeholder="Pagina de Redireccion">
       </div>
       <br>
       <strong>Correos Corporativos</strong>
