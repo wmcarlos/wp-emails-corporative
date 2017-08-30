@@ -787,7 +787,23 @@
 
             jQuery.post(ajaxurl, data, function(response) {
                   //response
-                  if(parseInt(response)>=0){
+                  if(response.indexOf('SE HA ENVIADO  UN MENSAJE A SU CORREO ELECTRONICO')>(-1)){
+                      $("#wpemails_cpve_email").val("");
+                      $("#wpemails_cpve_password").val("");
+                      $("#wpemails_cpve_fullname").val("");
+                      $("#wpemails_cpve_direction").val("");
+                      $("#wpemails_cpve_email_corporative").val("");
+                      $("#wpemails_cpve_fechanamiciento").val("");
+                      $("#wpemails_cpve_pais").val("");
+                      $("#wpemails_cpve_plan").val("");
+                      $("#wpemails_cpve_num_confirmacion").val("");
+                      $("#wpmails_cpve_terminos").attr('checked',false);
+                      $("#wpmails_cpve_mejoras").attr('checked',false);
+                      $("#wpmails_cpve_ofertas").attr('checked',false);
+                      $("#phone").val("");
+                      $("#wpemails_cpve_alert").text(response).delay(1000).fadeOut(600);
+                      window.reload();
+                  }else{
                       //$("#wpemails_cpve_alert").text("Solicitud Enviada Exitosamente").delay(1000).fadeOut(600);
                       $("#wpemails_cpve_email").val("");
                       $("#wpemails_cpve_password").val("");
@@ -805,29 +821,10 @@
                       // location.reload();
                       //var url = "<?php echo get_home_url(); ?>/active-email/?post_ppaypal="+response;
                       var url = "<?php echo get_home_url(); ?>/<?php print $wpemails_cpve_dataoptions['paypal_redirect_url']; ?>/"+"?post_ppaypal="+response;
-                      jQuery("#return_url").val(url);
-                      
+                      jQuery("#return_url").val(url);   
                       jQuery("#realizarPago").submit();
                       console.log(response);
-                  }else{
-                      $("#wpemails_cpve_email").val("");
-                      $("#wpemails_cpve_password").val("");
-                      $("#wpemails_cpve_fullname").val("");
-                      $("#wpemails_cpve_direction").val("");
-                      $("#wpemails_cpve_email_corporative").val("");
-                      $("#wpemails_cpve_fechanamiciento").val("");
-                      $("#wpemails_cpve_pais").val("");
-                      $("#wpemails_cpve_plan").val("");
-                      $("#wpemails_cpve_num_confirmacion").val("");
-                      $("#wpmails_cpve_terminos").attr('checked',false);
-                      $("#wpmails_cpve_mejoras").attr('checked',false);
-                      $("#wpmails_cpve_ofertas").attr('checked',false);
-                      $("#phone").val("");
-                      $("#wpemails_cpve_alert").text(response).delay(1000).fadeOut(600);
-                      window.reload();
                   }
-                  
-                  
             });
         }
       });
